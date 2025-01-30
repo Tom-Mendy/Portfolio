@@ -27,6 +27,14 @@ const angularApp = new AngularNodeAppEngine();
  */
 
 /**
+ * Handle robots.txt requests by serving the robots.txt file from the /browser folder.
+ */
+app.use('/robots.txt', (req, res, next) => {
+  console.log('robots.txt requested');
+  res.sendFile(resolve(browserDistFolder, 'robots.txt'));
+});
+
+/**
  * Serve static files from /browser
  */
 app.use(
