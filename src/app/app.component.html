@@ -1,11 +1,13 @@
-
 <main class="main">
   <div class="content">
     <div class="left-side">
-
+      @defer (hydrate on interaction) {
+        <app-cv></app-cv>
+      } @placeholder {
+        <div>Large component placeholder</div>
+      }
     </div>
   </div>
 </main>
-
 
 <router-outlet />
