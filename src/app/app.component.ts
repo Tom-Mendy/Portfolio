@@ -6,7 +6,7 @@ import { RepositoryComponent } from './repository/repository.component';
   selector: 'app-root',
   imports: [RouterOutlet, RepositoryComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'Portfolio';
