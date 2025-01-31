@@ -29,7 +29,7 @@ const angularApp = new AngularNodeAppEngine();
 /**
  * Handle robots.txt requests by serving the robots.txt file from the /browser folder.
  */
-app.use('/robots.txt', (req, res, next) => {
+app.use('/robots.txt', (req, res) => {
   console.log('robots.txt requested');
   res.sendFile(resolve(browserDistFolder, 'robots.txt'));
 });
@@ -51,9 +51,7 @@ app.use(
 app.use('/**', (req, res, next) => {
   angularApp
     .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
-    )
+    .then((response) => (response ? writeResponseToNodeResponse(response, res) : next()))
     .catch(next);
 });
 
