@@ -6,6 +6,7 @@
   </div> -->
   @for (item of pinnedItems.nodes; track item.name) {
     <a href="{{ item.url }}">
+      <ng-icon name="svglGithubLight" />
       {{ item.name }}<br />
       description: {{ item.description }}<br />
       Language: {{ item.primaryLanguage.name }}<br />

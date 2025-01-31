@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { CommonModule } from '@angular/common'; // Import CommonModule
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { svglGithubLight } from '@ng-icons/svgl';
 
 export interface Root {
   data: Data;
@@ -30,9 +32,10 @@ export interface Node {
 
 @Component({
   selector: 'app-github',
-  imports: [CommonModule],
+  imports: [CommonModule, NgIcon],
   templateUrl: './github.component.html',
   styleUrls: ['./github.component.css'],
+  viewProviders: [provideIcons({ svglGithubLight })],
 })
 export class GithubComponent implements OnInit {
   pinnedItems!: PinnedItems;
