@@ -1,0 +1,12 @@
+<h2>Pinned Repositories</h2>
+<div *ngIf="pinnedItems?.nodes?.length; else noPinnedItems">
+  <!-- <div *gFor="let item of pinnedItems.nodes; trackBy: item.name">
+    {{ item.name }}
+  </div> -->
+  @for (item of pinnedItems.nodes; track item.name) {
+    {{ item.name }}
+  }
+</div>
+<ng-template #noPinnedItems>
+  <p>No pinned repositories found.</p>
+</ng-template>

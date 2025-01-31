@@ -1,14 +1,45 @@
 <main class="main">
   <div class="content">
-    <div class="flex align-middle gap-x-4">
-      <div class="left-side">Tom Mendy</div>
-      <div>Portfolio</div>
+    <div class="flex align-middle gap-x-4"></div>
+
+    <div class="flex flex-col md:flex-row">
+      <div class="w-full md:w-5/12 flex flex-col items-center justify-center gap-3 py-5">
+        <div class="text-8xl">{{ name }}</div>
+        <br />
+        <div>{{ email }}</div>
+        @defer (hydrate on interaction) {
+          <app-cv></app-cv>
+        } @placeholder {
+          <div>Large component placeholder</div>
+        }
+        <!-- <div class="flex flex-col gap-2">
+          <label for="username">Username</label>
+          <input pInputText id="username" type="text" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <label for="password">Password</label>
+          <input pInputText id="password" type="password" />
+        </div>
+        <div class="flex">
+          <p-button label="Login" icon="pi pi-user" class="w-full max-w-[17.35rem]" styleClass="w-full mx-auto" />
+        </div> -->
+      </div>
+      <div class="w-full md:w-2/12">
+        <p-divider layout="vertical" class="!hidden md:!flex"></p-divider>
+        <p-divider layout="horizontal" class="!flex md:!hidden" align="center"></p-divider>
+      </div>
+      <div class="w-full md:w-5/12 flex-col items-center justify-center py-5">
+        <div class="text-7xl">Portfolio</div>
+        <app-github></app-github>
+        <!-- <p-button
+          label="Sign Up"
+          icon="pi pi-user-plus"
+          severity="success"
+          class="w-full max-w-[17.35rem]"
+          styleClass="w-full mx-auto"
+        /> -->
+      </div>
     </div>
-    @defer (hydrate on interaction) {
-      <app-cv></app-cv>
-    } @placeholder {
-      <div>Large component placeholder</div>
-    }
   </div>
 </main>
 
