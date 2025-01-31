@@ -1,12 +1,14 @@
 <main class="main">
   <div class="content">
-    <div class="left-side">
-      @defer (hydrate on interaction) {
-        <app-cv></app-cv>
-      } @placeholder {
-        <div>Large component placeholder</div>
-      }
+    <div class="flex align-middle gap-x-4">
+      <div class="left-side">Tom Mendy</div>
+      <div>Portfolio</div>
     </div>
+    @defer (hydrate on interaction) {
+      <app-cv></app-cv>
+    } @placeholder {
+      <div>Large component placeholder</div>
+    }
   </div>
 </main>
 
