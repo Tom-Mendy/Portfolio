@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { svglGithubLight } from '@ng-icons/svgl';
 import { heroStarSolid } from '@ng-icons/heroicons/solid';
+import { FieldsetModule } from 'primeng/fieldset';
 
 export interface Root {
   data: Data;
@@ -34,7 +35,7 @@ export interface Node {
 
 @Component({
   selector: 'app-github',
-  imports: [CommonModule, NgIcon, LanguageIconComponent],
+  imports: [CommonModule, NgIcon, LanguageIconComponent, FieldsetModule],
   templateUrl: './github.component.html',
   styleUrls: ['./github.component.css'],
   viewProviders: [provideIcons({ svglGithubLight, heroStarSolid })],

@@ -6,18 +6,21 @@
   </div> -->
   @for (item of pinnedItems.nodes; track item.name) {
     <a href="{{ item.url }}">
-      <ng-icon name="svglGithubLight" />
-      {{ item.name }}<br />
-      description: {{ item.description }}<br />
-      Language <app-language-icon [language]="item.primaryLanguage.name"></app-language-icon>:
-      {{ item.primaryLanguage.name }}<br />
-      Star: {{ item.stargazerCount }} <ng-icon name="heroStarSolid"></ng-icon> <br />
+      <p-fieldset [legend]="item.name" class="max-w-sm">
+        <p class="m-0">
+          <ng-icon name="svglGithubLight" /> <br />
+          description: {{ item.description }}<br />
+          Language <app-language-icon [language]="item.primaryLanguage.name"></app-language-icon>:
+          {{ item.primaryLanguage.name }}<br />
+          Star: {{ item.stargazerCount }} <ng-icon name="heroStarSolid"></ng-icon> <br />
 
-      Topic:
-      @for (topic of item.repositoryTopics.nodes; track topic.topic) {
-        {{ topic.topic.name }}
-      }
-      <br />
+          Topic:
+          @for (topic of item.repositoryTopics.nodes; track topic.topic) {
+            {{ topic.topic.name }}
+          }
+          <br />
+        </p>
+      </p-fieldset>
     </a>
   }
 </div>
