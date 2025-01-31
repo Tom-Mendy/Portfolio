@@ -9,7 +9,8 @@
       <ng-icon name="svglGithubLight" />
       {{ item.name }}<br />
       description: {{ item.description }}<br />
-      Language: {{ item.primaryLanguage.name }}<br />
+      Language <app-language-icon [language]="item.primaryLanguage.name"></app-language-icon>:
+      {{ item.primaryLanguage.name }}<br />
       Star: {{ item.stargazerCount }}<br />
       Topic:
       @for (topic of item.repositoryTopics.nodes; track topic.topic) {

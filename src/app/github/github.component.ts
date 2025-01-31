@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from './../../environments/environment';
-import { CommonModule } from '@angular/common'; // Import CommonModule
+import { LanguageIconComponent } from '../language-icon/language-icon.component';
+import { CommonModule } from '@angular/common';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { svglGithubLight } from '@ng-icons/svgl';
 
@@ -32,7 +33,7 @@ export interface Node {
 
 @Component({
   selector: 'app-github',
-  imports: [CommonModule, NgIcon],
+  imports: [CommonModule, NgIcon, LanguageIconComponent],
   templateUrl: './github.component.html',
   styleUrls: ['./github.component.css'],
   viewProviders: [provideIcons({ svglGithubLight })],
@@ -44,7 +45,6 @@ export class GithubComponent implements OnInit {
   private readonly GITHUB_GRAPHQL_URL = 'https://api.github.com/graphql';
   private readonly GITHUB_TOKEN = environment.GITHUB_TOKEN;
   private readonly OWNER = 'Tom-Mendy';
-
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
