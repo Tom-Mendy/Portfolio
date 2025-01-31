@@ -5,8 +5,7 @@ import { LanguageIconComponent } from '../language-icon/language-icon.component'
 import { CommonModule } from '@angular/common';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { svglGithubLight } from '@ng-icons/svgl';
-import { RatingModule } from 'primeng/rating';
-import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { heroStarSolid } from '@ng-icons/heroicons/solid';
 
 export interface Root {
   data: Data;
@@ -35,10 +34,10 @@ export interface Node {
 
 @Component({
   selector: 'app-github',
-  imports: [CommonModule, NgIcon, LanguageIconComponent, RatingModule, FormsModule],
+  imports: [CommonModule, NgIcon, LanguageIconComponent],
   templateUrl: './github.component.html',
   styleUrls: ['./github.component.css'],
-  viewProviders: [provideIcons({ svglGithubLight })],
+  viewProviders: [provideIcons({ svglGithubLight, heroStarSolid })],
 })
 export class GithubComponent implements OnInit {
   pinnedItems!: PinnedItems;
