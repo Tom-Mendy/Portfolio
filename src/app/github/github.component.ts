@@ -21,6 +21,11 @@ export interface PinnedItems {
 
 export interface Node {
   name: string;
+  description: string;
+  primaryLanguage: { name: string };
+  url: string;
+  stargazerCount: number;
+  repositoryTopics: { nodes: { topic: { name: string } }[] };
 }
 
 @Component({
@@ -46,15 +51,28 @@ export class GithubComponent implements OnInit {
   private fetchPinnedRepos(): void {
     const query = `
       query {
-        user(login: "${this.OWNER}") {
-          pinnedItems(first: 6, types: REPOSITORY) {
+      user(login: "${this.OWNER}") {
+        pinnedItems(first: 6, types: REPOSITORY) {
+        nodes {
+          ... on Repository {
+          name
+          description
+          url
+          stargazerCount
+          primaryLanguage {
+            name
+          }
+          repositoryTopics(first: 5) {
             nodes {
-              ... on Repository {
-                name
-              }
+            topic {
+              name
+            }
             }
           }
+          }
         }
+        }
+      }
       }
     `;
 

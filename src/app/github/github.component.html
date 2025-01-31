@@ -2,9 +2,20 @@
 <div *ngIf="pinnedItems?.nodes?.length; else noPinnedItems">
   <!-- <div *gFor="let item of pinnedItems.nodes; trackBy: item.name">
     {{ item.name }}
+    {{ item.description }}
   </div> -->
   @for (item of pinnedItems.nodes; track item.name) {
-    {{ item.name }}
+    <a href="{{ item.url }}">
+      {{ item.name }}<br />
+      description: {{ item.description }}<br />
+      Language: {{ item.primaryLanguage.name }}<br />
+      Star: {{ item.stargazerCount }}<br />
+      Topic:
+      @for (topic of item.repositoryTopics.nodes; track topic.topic) {
+        {{ topic.topic.name }}
+      }
+      <br />
+    </a>
   }
 </div>
 <ng-template #noPinnedItems>
