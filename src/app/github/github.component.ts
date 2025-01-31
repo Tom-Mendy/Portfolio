@@ -5,6 +5,8 @@ import { LanguageIconComponent } from '../language-icon/language-icon.component'
 import { CommonModule } from '@angular/common';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { svglGithubLight } from '@ng-icons/svgl';
+import { RatingModule } from 'primeng/rating';
+import { FormsModule } from '@angular/forms'; // Import FormsModule
 
 export interface Root {
   data: Data;
@@ -33,7 +35,7 @@ export interface Node {
 
 @Component({
   selector: 'app-github',
-  imports: [CommonModule, NgIcon, LanguageIconComponent],
+  imports: [CommonModule, NgIcon, LanguageIconComponent, RatingModule, FormsModule],
   templateUrl: './github.component.html',
   styleUrls: ['./github.component.css'],
   viewProviders: [provideIcons({ svglGithubLight })],

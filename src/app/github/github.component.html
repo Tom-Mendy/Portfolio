@@ -12,6 +12,10 @@
       Language <app-language-icon [language]="item.primaryLanguage.name"></app-language-icon>:
       {{ item.primaryLanguage.name }}<br />
       Star: {{ item.stargazerCount }}<br />
+
+      <div class="card flex justify-center">
+        <p-rating [(ngModel)]="item.stargazerCount" [readonly]="true" />
+      </div>
       Topic:
       @for (topic of item.repositoryTopics.nodes; track topic.topic) {
         {{ topic.topic.name }}
