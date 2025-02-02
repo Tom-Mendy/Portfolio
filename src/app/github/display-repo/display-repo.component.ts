@@ -6,10 +6,11 @@ import { SelectButton } from 'primeng/selectbutton';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DataViewModule } from 'primeng/dataview';
+import { LanguageIconComponent } from '../../language-icon/language-icon.component';
 
 @Component({
   standalone: true,
-  imports: [DataView, ButtonModule, CommonModule, SelectButton, FormsModule, DataViewModule],
+  imports: [DataView, ButtonModule, CommonModule, SelectButton, FormsModule, DataViewModule, LanguageIconComponent],
   selector: 'app-display-repo',
   templateUrl: './display-repo.component.html',
   styleUrl: './display-repo.component.css',
