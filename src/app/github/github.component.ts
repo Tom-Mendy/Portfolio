@@ -7,31 +7,8 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { svglGithubLight } from '@ng-icons/svgl';
 import { heroStarSolid } from '@ng-icons/heroicons/solid';
 import { FieldsetModule } from 'primeng/fieldset';
-
-export interface Root {
-  data: Data;
-}
-
-export interface Data {
-  user: User;
-}
-
-export interface User {
-  pinnedItems: PinnedItems;
-}
-
-export interface PinnedItems {
-  nodes: Node[];
-}
-
-export interface Node {
-  name: string;
-  description: string;
-  primaryLanguage: { name: string };
-  url: string;
-  stargazerCount: number;
-  repositoryTopics: { nodes: { topic: { name: string } }[] };
-}
+import { PinnedItems } from './pinned-items';
+import { PinnedRepo } from './pinned-repo';
 
 @Component({
   selector: 'app-github',
@@ -86,7 +63,7 @@ export class GithubComponent implements OnInit {
       'Content-Type': 'application/json',
     });
 
-    this.http.post<Root>(this.GITHUB_GRAPHQL_URL, { query }, { headers }).subscribe({
+    this.http.post<PinnedRepo>(this.GITHUB_GRAPHQL_URL, { query }, { headers }).subscribe({
       next: (response) => {
         this.errorMessage = '';
         this.pinnedItems = response.data.user.pinnedItems;
