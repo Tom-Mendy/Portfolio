@@ -9,4 +9,5 @@ export interface Node {
   url: string;
   stargazerCount: number;
   repositoryTopics: { nodes: { topic: { name: string } }[] };
+  owner: { login: string };
 }

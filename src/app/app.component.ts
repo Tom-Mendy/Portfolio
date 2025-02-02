@@ -3,8 +3,6 @@ import { RouterOutlet } from '@angular/router';
 import { GithubComponent } from './github/github.component';
 import { CVComponent } from './cv/cv.component';
 import { DividerModule } from 'primeng/divider';
-// import { PrimeNG } from 'primeng/config';
-// import Aura from '@primeng/themes/aura';
 
 @Component({
   selector: 'app-root',

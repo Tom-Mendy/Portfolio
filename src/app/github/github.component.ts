@@ -39,6 +39,9 @@ export class GithubComponent implements OnInit {
         nodes {
           ... on Repository {
           name
+          owner {
+              login
+            }
           description
           url
           stargazerCount
@@ -68,6 +71,7 @@ export class GithubComponent implements OnInit {
       next: (response) => {
         this.errorMessage = '';
         this.pinnedItems = response.data.user.pinnedItems;
+        console.log(this.pinnedItems);
       },
       error: (error) => {
         this.errorMessage = error;
