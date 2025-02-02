@@ -30,11 +30,7 @@
       </div>
       <div class="w-full md:w-5/12 flex-col items-center justify-center py-5">
         <div class="text-7xl">Portfolio</div>
-        @defer (hydrate on interaction) {
-          <app-github></app-github>
-        } @placeholder {
-          <div>can't get github info</div>
-        }
+        <app-github></app-github>
         <!-- <p-button
           label="Sign Up"
           icon="pi pi-user-plus"

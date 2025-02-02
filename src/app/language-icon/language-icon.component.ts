@@ -43,7 +43,6 @@ export class LanguageIconComponent implements OnInit {
   public icon = '';
 
   ngOnInit(): void {
-    console.log('LanguageIconComponent.onInit', this.language);
     switch (this.language) {
       case 'C':
         this.icon = 'svglC';
