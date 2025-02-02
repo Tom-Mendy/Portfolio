@@ -1,5 +1,4 @@
 <div class="card">
-  Pinned Repositories:
   <p-dataview #dv [value]="products" [layout]="layout">
     <ng-template #header>
       <div class="flex justify-end">
@@ -32,6 +31,7 @@
                 }}</span>
                 <div class="text-lg font-medium mt-2">{{ item.name }}</div>
                 <ng-icon name="svglGithubLight" /> {{ item.owner.login }}/{{ item.name }} <br />
+                Description: {{ item.description }}<br />
                 Topic:
                 @for (topic of item.repositoryTopics.nodes; track topic.topic) {
                   {{ topic.topic.name }}
@@ -97,6 +97,7 @@
                   }}</span>
                   <div class="text-lg font-medium mt-1">{{ product.name }}</div>
                   <ng-icon name="svglGithubLight" /> {{ product.owner.login }}/{{ product.name }} <br />
+                  Description: {{ product.description }}<br />
                   Topic:
                   @for (topic of product.repositoryTopics.nodes; track topic.topic) {
                     {{ topic.topic.name }}

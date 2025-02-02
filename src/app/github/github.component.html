@@ -1,30 +1,10 @@
-<h2>Pinned Repositories</h2>
+<h2>Pinned Repositories:</h2>
 <div *ngIf="pinnedItems?.nodes?.length; else noPinnedItems">
   <!-- <div *gFor="let item of pinnedItems.nodes; trackBy: item.name">
     {{ item.name }}
     {{ item.description }}
   </div> -->
   <app-display-repo [products]="pinnedItems.nodes"></app-display-repo>
-
-  @for (item of pinnedItems.nodes; track item.name) {
-    <a href="{{ item.url }}">
-      <p-fieldset [legend]="item.name" class="max-w-sm">
-        <p class="m-0">
-          <ng-icon name="svglGithubLight" /> <br />
-          description: {{ item.description }}<br />
-          Language <app-language-icon [language]="item.primaryLanguage.name"></app-language-icon>:
-          {{ item.primaryLanguage.name }}<br />
-          Star: {{ item.stargazerCount }} <ng-icon name="heroStarSolid"></ng-icon> <br />
-
-          Topic:
-          @for (topic of item.repositoryTopics.nodes; track topic.topic) {
-            {{ topic.topic.name }}
-          }
-          <br />
-        </p>
-      </p-fieldset>
-    </a>
-  }
 </div>
 <ng-template #noPinnedItems>
   <p>No pinned repositories found.</p>

@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from './../../environments/environment';
-import { LanguageIconComponent } from '../language-icon/language-icon.component';
 import { CommonModule } from '@angular/common';
-import { NgIcon, provideIcons } from '@ng-icons/core';
-import { svglGithubLight } from '@ng-icons/svgl';
-import { heroStarSolid } from '@ng-icons/heroicons/solid';
 import { FieldsetModule } from 'primeng/fieldset';
 import { PinnedItems } from './pinned-items';
 import { PinnedRepo } from './pinned-repo';
@@ -13,10 +9,9 @@ import { DisplayRepoComponent } from './display-repo/display-repo.component';
 
 @Component({
   selector: 'app-github',
-  imports: [CommonModule, NgIcon, LanguageIconComponent, FieldsetModule, DisplayRepoComponent],
+  imports: [CommonModule, FieldsetModule, DisplayRepoComponent],
   templateUrl: './github.component.html',
   styleUrls: ['./github.component.css'],
-  viewProviders: [provideIcons({ svglGithubLight, heroStarSolid })],
 })
 export class GithubComponent implements OnInit {
   pinnedItems!: PinnedItems;
