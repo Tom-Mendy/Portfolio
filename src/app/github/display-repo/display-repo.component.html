@@ -16,18 +16,10 @@
           [ngClass]="{ 'border-t border-surface-200 dark:border-surface-700': !first }"
         >
           <div class="md:w-40 relative">
-            <!-- <img
+            <img
               class="block xl:block mx-auto rounded w-full"
               [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + item.image"
               [alt]="item.name"
-            /> -->
-            <p-tag
-              [value]="item.inventoryStatus"
-              [severity]="getSeverity(item)"
-              class="absolute"
-              styleClass="dark:!bg-surface-900"
-              [style.left.px]="4"
-              [style.top.px]="4"
             />
           </div>
           <div class="flex flex-col md:flex-row justify-between md:items-center flex-1 gap-6">
@@ -83,14 +75,6 @@
                   [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image"
                   [alt]="product.name"
                   style="max-width: 300px"
-                />
-                <p-tag
-                  [value]="product.inventoryStatus"
-                  [severity]="getSeverity(product)"
-                  class="absolute"
-                  styleClass="dark:!bg-surface-900"
-                  [style.left.px]="4"
-                  [style.top.px]="4"
                 />
               </div>
             </div>

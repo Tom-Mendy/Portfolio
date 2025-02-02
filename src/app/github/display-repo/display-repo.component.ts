@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Node } from '../pinned-items';
 import { DataView } from 'primeng/dataview';
-import { Tag } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
 import { SelectButton } from 'primeng/selectbutton';
 import { CommonModule } from '@angular/common';
@@ -10,7 +9,7 @@ import { DataViewModule } from 'primeng/dataview';
 
 @Component({
   standalone: true,
-  imports: [DataView, ButtonModule, Tag, CommonModule, SelectButton, FormsModule, DataViewModule],
+  imports: [DataView, ButtonModule, CommonModule, SelectButton, FormsModule, DataViewModule],
   selector: 'app-display-repo',
   templateUrl: './display-repo.component.html',
   styleUrl: './display-repo.component.css',
