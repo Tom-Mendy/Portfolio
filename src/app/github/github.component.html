@@ -4,6 +4,8 @@
     {{ item.name }}
     {{ item.description }}
   </div> -->
+  <app-display-repo [products]="pinnedItems.nodes"></app-display-repo>
+
   @for (item of pinnedItems.nodes; track item.name) {
     <a href="{{ item.url }}">
       <p-fieldset [legend]="item.name" class="max-w-sm">

@@ -9,10 +9,11 @@ import { heroStarSolid } from '@ng-icons/heroicons/solid';
 import { FieldsetModule } from 'primeng/fieldset';
 import { PinnedItems } from './pinned-items';
 import { PinnedRepo } from './pinned-repo';
+import { DisplayRepoComponent } from './display-repo/display-repo.component';
 
 @Component({
   selector: 'app-github',
-  imports: [CommonModule, NgIcon, LanguageIconComponent, FieldsetModule],
+  imports: [CommonModule, NgIcon, LanguageIconComponent, FieldsetModule, DisplayRepoComponent],
   templateUrl: './github.component.html',
   styleUrls: ['./github.component.css'],
   viewProviders: [provideIcons({ svglGithubLight, heroStarSolid })],
