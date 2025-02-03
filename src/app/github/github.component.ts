@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from './../../environments/environment';
 import { CommonModule } from '@angular/common';
 import { FieldsetModule } from 'primeng/fieldset';
 import { PinnedItems } from './pinned-items';
@@ -18,7 +17,7 @@ export class GithubComponent implements OnInit {
   errorMessage = '';
 
   private readonly GITHUB_GRAPHQL_URL = 'https://api.github.com/graphql';
-  private readonly GITHUB_TOKEN = environment.GITHUB_TOKEN;
+  private readonly GITHUB_TOKEN = process.env['GITHUB_TOKEN'];
   private readonly OWNER = 'Tom-Mendy';
   constructor(private http: HttpClient) {}
 
