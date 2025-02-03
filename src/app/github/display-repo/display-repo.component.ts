@@ -36,18 +36,4 @@ export class DisplayRepoComponent {
   layout: 'list' | 'grid' = 'grid';
 
   options = ['list', 'grid'];
-
-  getSeverity(product: Node): 'success' | 'secondary' | 'info' | 'warn' | 'danger' | 'contrast' | undefined {
-    return 'success';
-    // switch (product.inventoryStatus) {
-    //   case 'INSTOCK':
-    //     return 'success';
-    //   case 'LOWSTOCK':
-    //     return 'warn';
-    //   case 'OUTOFSTOCK':
-    //     return 'danger';
-    //   default:
-    //     return null;
-    // }
-  }
 }
