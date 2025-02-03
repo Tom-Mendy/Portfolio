@@ -10,6 +10,7 @@ import { LanguageIconComponent } from '../../language-icon/language-icon.compone
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { svglGithubLight } from '@ng-icons/svgl';
 import { heroStarSolid } from '@ng-icons/heroicons/solid';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   standalone: true,
@@ -22,6 +23,7 @@ import { heroStarSolid } from '@ng-icons/heroicons/solid';
     DataViewModule,
     LanguageIconComponent,
     NgIcon,
+    NgOptimizedImage,
   ],
   selector: 'app-display-repo',
   templateUrl: './display-repo.component.html',

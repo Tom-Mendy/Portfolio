@@ -23,7 +23,9 @@
             /> -->
             <img
               class="block xl:block mx-auto rounded w-full"
-              [src]="'https://raw.githubusercontent.com/' + item.owner.login + '/' + item.name + '/main/example.png'"
+              [ngSrc]="'https://raw.githubusercontent.com/' + item.owner.login + '/' + item.name + '/main/example.png'"
+              width="582"
+              height="327"
               alt="Example Image"
             />
           </div>
@@ -93,13 +95,15 @@
                 /> -->
                 <img
                   class="rounded w-full"
-                  [src]="
+                  [ngSrc]="
                     'https://raw.githubusercontent.com/' +
                     product.owner.login +
                     '/' +
                     product.name +
                     '/main/example.png'
                   "
+                  width="582"
+                  height="327"
                   alt="Example Image"
                   style="max-width: 300px"
                 />
