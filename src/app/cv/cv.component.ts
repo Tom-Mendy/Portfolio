@@ -13,6 +13,7 @@ export class CVComponent {
   visible = false;
 
   showDialog() {
+    console.log('showDialog');
     this.visible = true;
   }
 

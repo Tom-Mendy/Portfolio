@@ -1,18 +1,14 @@
 <main class="main">
   <div class="content">
-    <div class="flex align-middle gap-x-4"></div>
+    <!-- <div class="flex align-middle gap-x-4"></div> -->
+    <div #home class="text-7xl">Home</div>
 
-    <div class="text-7xl">Portfolio</div>
+    <div #about class="text-7xl">Portfolio</div>
     <!-- <div class="flex flex-col md:flex-row">
       <div class="w-full md:w-5/12 flex flex-col items-center justify-center gap-3 py-5">
         <div class="text-8xl">{{ name }}</div>
         <br /> -->
-    <div>{{ email }}</div>
-    @defer (hydrate on interaction) {
-      <app-cv></app-cv>
-    } @placeholder {
-      <div>Large component placeholder</div>
-    }
+
     <!-- <div class="flex flex-col gap-2">
           <label for="username">Username</label>
           <input pInputText id="username" type="text" />
@@ -40,6 +36,11 @@
         /> -->
     <!-- </div>
     </div> -->
+    @defer (hydrate on viewport) {
+      <app-contact></app-contact>
+    } @placeholder {
+      <div>Contact placeholder</div>
+    }
   </div>
 </main>
 

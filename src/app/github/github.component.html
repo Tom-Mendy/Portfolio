@@ -1,9 +1,5 @@
 <h2>Pinned Repositories:</h2>
 <div *ngIf="pinnedItems?.nodes?.length; else noPinnedItems">
-  <!-- <div *gFor="let item of pinnedItems.nodes; trackBy: item.name">
-    {{ item.name }}
-    {{ item.description }}
-  </div> -->
   <app-display-repo [products]="pinnedItems.nodes"></app-display-repo>
 </div>
 <ng-template #noPinnedItems>

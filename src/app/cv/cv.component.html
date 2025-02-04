@@ -1,4 +1,15 @@
-<p-button (click)="showDialog()" label="Show CV" />
-<p-dialog header="My CV" [modal]="true" [(visible)]="visible" class="w-40">
-  <img [ngSrc]="cvUrl" [alt]="cvAlt" width="500" height="200" />
-</p-dialog>
+<div class="card flex justify-center">
+  <p-button (click)="showDialog()" label="Show my CV" />
+  <p-dialog
+    header="Header"
+    [(visible)]="visible"
+    [modal]="true"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+    [style]="{ width: '50vw' }"
+    [draggable]="false"
+    [resizable]="false"
+    [maximizable]="true"
+  >
+    <img [ngSrc]="cvUrl" [alt]="cvAlt" width="500" height="200" />
+  </p-dialog>
+</div>
