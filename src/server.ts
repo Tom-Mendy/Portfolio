@@ -8,6 +8,8 @@ import express from 'express';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { GithubFetchPinnedRepos } from './server/github';
+
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
 
@@ -44,6 +46,13 @@ app.use(
     redirect: false,
   }),
 );
+
+/**
+ * Handle all other requests by rendering the Angular application.
+ */
+app.use('/github', (req, res) => {
+  GithubFetchPinnedRepos(req, res);
+});
 
 /**
  * Handle all other requests by rendering the Angular application.

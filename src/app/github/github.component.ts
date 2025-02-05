@@ -1,9 +1,11 @@
-import { Component, Inject, PLATFORM_ID, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CommonModule, isPlatformServer } from '@angular/common';
+import { Component, Inject, OnInit, TransferState, makeStateKey } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 import { PinnedItems } from './pinned-items';
-import { PinnedRepo } from './pinned-repo';
 import { DisplayRepoComponent } from './display-repo/display-repo.component';
+
+// Unique key to identify transferred data
+const PINNED_REPOS_KEY = makeStateKey<PinnedItems>('pinnedRepos');
 
 @Component({
   selector: 'app-github',
@@ -14,67 +16,23 @@ import { DisplayRepoComponent } from './display-repo/display-repo.component';
 export class GithubComponent implements OnInit {
   public pinnedItems: PinnedItems = { nodes: [] };
 
-  private readonly GITHUB_GRAPHQL_URL = 'https://api.github.com/graphql';
-  private GITHUB_TOKEN = '';
-  private readonly OWNER = 'Tom-Mendy';
-
   constructor(
-    @Inject(PLATFORM_ID) private platformId: object,
     private http: HttpClient,
-  ) {
-    if (isPlatformServer(this.platformId)) {
-      this.GITHUB_TOKEN = process.env['GITHUB_TOKEN'] || '';
-    }
-  }
+    @Inject(TransferState) private transferState: TransferState,
+  ) {}
 
   ngOnInit(): void {
-    if (isPlatformServer(this.platformId)) {
-      this.fetchPinnedRepos();
-    }
+    this.fetchPinnedRepos();
   }
 
   private fetchPinnedRepos(): void {
-    const query = `
-      query {
-        user(login: "${this.OWNER}") {
-          pinnedItems(first: 6, types: REPOSITORY) {
-            nodes {
-              ... on Repository {
-                name
-                owner {
-                  login
-                }
-                description
-                url
-                stargazerCount
-                primaryLanguage {
-                  name
-                }
-                repositoryTopics(first: 5) {
-                  nodes {
-                    topic {
-                      name
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    `;
-
-    const headers = new HttpHeaders({
-      Authorization: `bearer ${this.GITHUB_TOKEN}`,
-      'Content-Type': 'application/json',
-    });
-
-    this.http.post<PinnedRepo>(this.GITHUB_GRAPHQL_URL, { query }, { headers }).subscribe({
+    this.http.get<PinnedItems>('/github').subscribe({
       next: (response) => {
-        this.pinnedItems = response.data.user.pinnedItems;
+        this.pinnedItems = response;
+        this.transferState.set(PINNED_REPOS_KEY, this.pinnedItems);
       },
       error: (error) => {
-        console.log(error);
+        console.error('Error fetching pinned repos:', error);
       },
     });
   }
