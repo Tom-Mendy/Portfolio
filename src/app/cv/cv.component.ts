@@ -5,6 +5,7 @@ import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-cv',
+  standalone: true,
   imports: [ButtonModule, DialogModule, NgOptimizedImage],
   templateUrl: './cv.component.html',
   styleUrls: ['./cv.component.css'],

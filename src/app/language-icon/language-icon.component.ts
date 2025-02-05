@@ -18,6 +18,7 @@ import {
 @Component({
   selector: 'app-language-icon',
   imports: [NgIcon],
+  standalone: true,
   templateUrl: './language-icon.component.html',
   styleUrl: './language-icon.component.css',
   viewProviders: [

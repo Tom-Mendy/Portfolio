@@ -3,13 +3,9 @@
     <div #home class="text-7xl">Home</div>
 
     <div #about class="text-7xl">Portfolio</div>
-    <app-github></app-github>
+    <!-- <app-github></app-github> -->
 
-    @defer (hydrate on viewport) {
-      <app-contact></app-contact>
-    } @placeholder {
-      <div>Contact placeholder</div>
-    }
+    <app-contact></app-contact>
   </div>
 </main>
 
