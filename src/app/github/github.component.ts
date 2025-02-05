@@ -12,8 +12,7 @@ import { DisplayRepoComponent } from './display-repo/display-repo.component';
   styleUrls: ['./github.component.css'],
 })
 export class GithubComponent implements OnInit {
-  pinnedItems!: PinnedItems;
-  errorMessage = '';
+  public pinnedItems: PinnedItems = { nodes: [] };
 
   private readonly GITHUB_GRAPHQL_URL = 'https://api.github.com/graphql';
   private GITHUB_TOKEN = '';
@@ -37,31 +36,31 @@ export class GithubComponent implements OnInit {
   private fetchPinnedRepos(): void {
     const query = `
       query {
-      user(login: "${this.OWNER}") {
-        pinnedItems(first: 6, types: REPOSITORY) {
-        nodes {
-          ... on Repository {
-          name
-          owner {
-              login
-            }
-          description
-          url
-          stargazerCount
-          primaryLanguage {
-            name
-          }
-          repositoryTopics(first: 5) {
+        user(login: "${this.OWNER}") {
+          pinnedItems(first: 6, types: REPOSITORY) {
             nodes {
-            topic {
-              name
-            }
+              ... on Repository {
+                name
+                owner {
+                  login
+                }
+                description
+                url
+                stargazerCount
+                primaryLanguage {
+                  name
+                }
+                repositoryTopics(first: 5) {
+                  nodes {
+                    topic {
+                      name
+                    }
+                  }
+                }
+              }
             }
           }
-          }
         }
-        }
-      }
       }
     `;
 
@@ -72,12 +71,10 @@ export class GithubComponent implements OnInit {
 
     this.http.post<PinnedRepo>(this.GITHUB_GRAPHQL_URL, { query }, { headers }).subscribe({
       next: (response) => {
-        this.errorMessage = '';
         this.pinnedItems = response.data.user.pinnedItems;
       },
       error: (error) => {
-        this.errorMessage = error;
-        this.pinnedItems = { nodes: [] };
+        console.log(error);
       },
     });
   }

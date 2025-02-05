@@ -6,7 +6,11 @@
   </h2>
 
   <div *ngIf="pinnedItems?.nodes?.length; else noPinnedItems">
-    <app-display-repo [products]="pinnedItems.nodes"> </app-display-repo>
+    @defer (hydrate on idle) {
+      <app-display-repo [products]="pinnedItems.nodes"> </app-display-repo>
+    } @placeholder {
+      the repo
+    }
   </div>
 
   <ng-template #noPinnedItems>
