@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
-import { FieldsetModule } from 'primeng/fieldset';
+import { CommonModule, isPlatformServer } from '@angular/common';
 import { PinnedItems } from './pinned-items';
 import { PinnedRepo } from './pinned-repo';
 import { DisplayRepoComponent } from './display-repo/display-repo.component';
 
 @Component({
   selector: 'app-github',
-  imports: [CommonModule, FieldsetModule, DisplayRepoComponent],
+  imports: [CommonModule, DisplayRepoComponent],
   templateUrl: './github.component.html',
   styleUrls: ['./github.component.css'],
 })
@@ -17,12 +16,22 @@ export class GithubComponent implements OnInit {
   errorMessage = '';
 
   private readonly GITHUB_GRAPHQL_URL = 'https://api.github.com/graphql';
-  private readonly GITHUB_TOKEN = process.env['GITHUB_TOKEN'];
+  private GITHUB_TOKEN = '';
   private readonly OWNER = 'Tom-Mendy';
-  constructor(private http: HttpClient) {}
+
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: object,
+    private http: HttpClient,
+  ) {
+    if (isPlatformServer(this.platformId)) {
+      this.GITHUB_TOKEN = process.env['GITHUB_TOKEN'] || '';
+    }
+  }
 
   ngOnInit(): void {
-    this.fetchPinnedRepos();
+    if (isPlatformServer(this.platformId)) {
+      this.fetchPinnedRepos();
+    }
   }
 
   private fetchPinnedRepos(): void {
