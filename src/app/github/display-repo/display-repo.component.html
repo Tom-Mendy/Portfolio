@@ -9,13 +9,12 @@
           class="bg-gray-100 dark:bg-gray-800 rounded-lg p-1"
         >
           <ng-template #item let-item>
-            <i
-              class="pi px-3 py-2 rounded-md transition-colors duration-200 hover:bg-gray-200 dark:hover:bg-gray-700"
-              [ngClass]="{
-                'pi-bars text-blue-600 dark:text-blue-400': item === 'list',
-                'pi-table text-purple-600 dark:text-purple-400': item === 'grid',
-              }"
-            ></i>
+            @if (item === 'grid') {
+              <ng-icon name="matGridViewOutline" />
+            }
+            @if (item === 'list') {
+              <ng-icon name="matListOutline" />
+            }
           </ng-template>
         </p-selectbutton>
       </div>

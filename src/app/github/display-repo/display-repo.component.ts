@@ -11,6 +11,7 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { svglGithubLight } from '@ng-icons/svgl';
 import { heroStarSolid } from '@ng-icons/heroicons/solid';
 import { NgOptimizedImage } from '@angular/common';
+import { matGridViewOutline, matListOutline } from '@ng-icons/material-icons/outline';
 
 @Component({
   standalone: true,
@@ -28,7 +29,7 @@ import { NgOptimizedImage } from '@angular/common';
   selector: 'app-display-repo',
   templateUrl: './display-repo.component.html',
   styleUrl: './display-repo.component.css',
-  viewProviders: [provideIcons({ svglGithubLight, heroStarSolid })],
+  viewProviders: [provideIcons({ svglGithubLight, heroStarSolid, matGridViewOutline, matListOutline })],
 })
 export class DisplayRepoComponent {
   @Input() products: Node[] = [];

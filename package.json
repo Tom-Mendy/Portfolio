@@ -27,6 +27,7 @@
     "@angular/ssr": "^19.1.5",
     "@ng-icons/core": "^30.2.0",
     "@ng-icons/heroicons": "^30.2.0",
+    "@ng-icons/material-icons": "^30.2.0",
     "@ng-icons/svgl": "^30.2.0",
     "@primeng/themes": "^19.0.5",
     "@tailwindcss/postcss": "^4.0.3",
