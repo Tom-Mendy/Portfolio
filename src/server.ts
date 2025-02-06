@@ -8,7 +8,10 @@ import express from 'express';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { GithubFetchPinnedRepos } from './server/github';
+import { GithubFetchPinnedRepos } from './server/github/pinnedRepos';
+import { EventEmitter } from 'events';
+
+EventEmitter.defaultMaxListeners = 15;
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
