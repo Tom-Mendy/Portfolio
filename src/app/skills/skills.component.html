@@ -51,13 +51,15 @@
         @defer (hydrate on viewport) {
           <div class="flex flex-wrap justify-center gap-3 md:gap-4">
             @for (item of category.items; track item.name) {
+              <p-skeleton *ngIf="!item.load" width="6rem" height="2rem" borderRadius="16px" />
               <a [href]="item.site" class="transition-transform duration-200 hover:scale-105">
                 <img
-                  [src]="generateBadgeUrl(item)"
+                  [ngSrc]="generateBadgeUrl(item)"
                   [alt]="item.name + ' badge'"
                   class="h-8 rounded-md"
-                  height="32"
-                  loading="lazy"
+                  [width]="32 + item.name.length * 10"
+                  height="28"
+                  (load)="onImageLoad(item)"
                 />
               </a>
             }
