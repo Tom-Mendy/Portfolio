@@ -3,14 +3,13 @@ import { Node } from '../pinned-items';
 import { DataView } from 'primeng/dataview';
 import { ButtonModule } from 'primeng/button';
 import { SelectButton } from 'primeng/selectbutton';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DataViewModule } from 'primeng/dataview';
 import { LanguageIconComponent } from '../../language-icon/language-icon.component';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { svglGithubLight } from '@ng-icons/svgl';
 import { heroStarSolid } from '@ng-icons/heroicons/solid';
-import { NgOptimizedImage } from '@angular/common';
 import { matGridViewOutline, matListOutline } from '@ng-icons/material-icons/outline';
 
 @Component({
