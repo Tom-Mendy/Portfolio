@@ -51,11 +51,45 @@ export class SkillsComponent implements OnInit {
     { color: '003B57', name: 'sqlite', icon: 'sqlite', site: 'https://sqlite.org' },
   ];
 
+  ops: Badge[] = [
+    { color: 'EE0000', name: 'ansible', icon: 'ansible', site: 'https://www.ansible.com/' },
+    { color: 'D22128', name: 'apache', icon: 'apache', site: 'https://apache.org' },
+    { color: 'C71A36', name: 'apache%20maven', icon: 'apachemaven', site: 'https://maven.apache.org' },
+    { color: 'F8DC75', name: 'apache%20tomcat', icon: 'apachetomcat', site: 'https://tomcat.apache.org' },
+    { color: '064F8C', name: 'cmake', icon: 'cmake', site: 'https://cmake.org' },
+    { color: 'F05032', name: 'git', icon: 'git', site: 'https://git-scm.com/' },
+    { color: '181717', name: 'github', icon: 'github', site: 'https://github.com' },
+    {
+      color: '2088FF',
+      name: 'github%20actions',
+      icon: 'github%20actions',
+      site: 'https://github.com/features/actions',
+    },
+    { color: 'F46800', name: 'grafana', icon: 'grafana', site: 'https://grafana.com/' },
+    { color: 'D24939', name: 'jenkins', icon: 'jenkins', site: 'https://www.jenkins.io' },
+    { color: 'D22128', name: 'jmeter', icon: 'apachejmeter', site: 'https://jmeter.apache.org/' },
+    { color: '7D64FF', name: 'k6', icon: 'k6', site: 'https://k6.io' },
+    { color: '009639', name: 'nginx', icon: 'nginx', site: 'https://nginx.org' },
+    { color: '000000', name: 'markdown', icon: 'markdown', site: 'https://markdownguide.org' },
+    { color: 'FF6C37', name: 'postman', icon: 'postman', site: 'https://postman.com' },
+    { color: 'E6522C', name: 'prometheus', icon: 'prometheus', site: 'https://prometheus.io/' },
+    { color: '24A1C1', name: 'traefik', icon: 'traefikproxy', site: 'https://traefik.io/' },
+  ];
+
   container: Badge[] = [
     { color: '2496ED', name: 'docker', icon: 'docker', site: 'https://docker.com/' },
     { color: '892CA0', name: 'podman', icon: 'podman', site: 'https://podman.io' },
     { color: '0F1689', name: 'helm', icon: 'helm', site: 'https://helm.sh/' },
     { color: '326CE5', name: 'kubernetes', icon: 'kubernetes', site: 'https://kubernetes.io/' },
+  ];
+
+  operatingSystems: Badge[] = [
+    { color: '0D1016', name: 'linux', icon: 'linux', site: 'https://linux.org/' },
+    { color: '5277C3', name: 'nixos', icon: 'nixos', site: 'https://nixos.org' },
+    { color: 'A81D33', name: 'debian', icon: 'debian', site: 'https://debian.org' },
+    { color: 'E95420', name: 'ubuntu', icon: 'ubuntu', site: 'https://ubuntu.com' },
+    { color: '51A2DA', name: 'fedora', icon: 'fedora', site: 'https://fedoraproject.org' },
+    { color: '1793D1', name: 'arch%20linux', icon: 'archlinux', site: 'https://archlinux.org' },
   ];
 
   constructor(
