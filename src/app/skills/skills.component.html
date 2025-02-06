@@ -17,17 +17,7 @@
 
   <!-- Connect Section -->
   <section class="mb-16 text-center">
-    <h2 class="mb-6 text-3xl font-semibold text-gray-800 dark:text-gray-200">
-      Connect with me
-      <img
-        src="https://raw.githubusercontent.com/ShahriarShafin/ShahriarShafin/main/Assets/handshake.gif"
-        alt="Handshake animation"
-        class="mx-2 inline h-20 w-20 md:h-24 md:w-24"
-        width="96"
-        height="96"
-        loading="lazy"
-      />
-    </h2>
+    <h2 class="mb-6 text-3xl font-semibold text-gray-800 dark:text-gray-200">Connect with me</h2>
     <div class="flex justify-center space-x-4">
       <a
         href="https://linkedin.com/in/tom-mendy"
@@ -42,6 +32,7 @@
           width="40"
           height="40"
           loading="eager"
+          onload=""
         />
       </a>
     </div>
@@ -49,17 +40,7 @@
 
   <!-- Skills Section -->
   <section class="mb-16">
-    <h2 class="mb-8 text-center text-3xl font-semibold text-gray-800 dark:text-gray-200">
-      Skills
-      <img
-        src="https://media2.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif?cid=ecf05e47a0n3gi1bfqntqmob8g9aid1oyj2wr3ds3mg700bl&rid=giphy.gif"
-        alt="Skills animation"
-        class="inline h-10 w-10"
-        width="40"
-        height="40"
-        loading="lazy"
-      />
-    </h2>
+    <h2 class="mb-8 text-center text-3xl font-semibold text-gray-800 dark:text-gray-200">Skills</h2>
 
     <!-- Skills Categories -->
     @for (category of skillCategories; track category.title) {
@@ -67,19 +48,23 @@
         <h3 class="mb-4 text-xl font-medium text-center text-gray-700 dark:text-gray-300">
           {{ category.title }}
         </h3>
-        <div class="flex flex-wrap justify-center gap-3 md:gap-4">
-          @for (item of category.items; track item.name) {
-            <a [href]="item.site" class="transition-transform duration-200 hover:scale-105">
-              <img
-                [src]="generateBadgeUrl(item)"
-                [alt]="item.name + ' badge'"
-                class="h-8 rounded-md"
-                loading="lazy"
-                height="32"
-              />
-            </a>
-          }
-        </div>
+        @defer (hydrate on viewport) {
+          <div class="flex flex-wrap justify-center gap-3 md:gap-4">
+            @for (item of category.items; track item.name) {
+              <a [href]="item.site" class="transition-transform duration-200 hover:scale-105">
+                <img
+                  [src]="generateBadgeUrl(item)"
+                  [alt]="item.name + ' badge'"
+                  class="h-8 rounded-md"
+                  height="32"
+                  loading="lazy"
+                />
+              </a>
+            }
+          </div>
+        } @placeholder {
+          <p-skeleton width="5rem" height="2rem" />
+        }
       </div>
     }
   </section>
@@ -97,34 +82,37 @@
         loading="lazy"
       />
     </h2>
-
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
-      <div>
+    @defer (hydrate on viewport) {
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
+        <div>
+          <img
+            src="https://github-readme-stats.vercel.app/api?username=Tom-Mendy&show_icons=true&theme=transparent"
+            alt="GitHub Stats"
+            class="w-full rounded-lg bg-gray-50 p-2 dark:bg-gray-800"
+            loading="lazy"
+          />
+          <img
+            src="https://github-readme-streak-stats.herokuapp.com?user=Tom-Mendy&theme=transparent"
+            alt="GitHub Streak"
+            class="w-full rounded-lg bg-gray-50 p-2 dark:bg-gray-800"
+            loading="lazy"
+          />
+          <img
+            src="https://github-readme-stats.vercel.app/api/top-langs/?username=Tom-Mendy&layout=donut&theme=transparent"
+            alt="Top Languages"
+            class="w-full rounded-lg bg-gray-50 p-2 dark:bg-gray-800"
+            loading="lazy"
+          />
+        </div>
         <img
-          src="https://github-readme-stats.vercel.app/api?username=Tom-Mendy&show_icons=true&theme=transparent"
-          alt="GitHub Stats"
-          class="w-full rounded-lg bg-gray-50 p-2 dark:bg-gray-800"
-          loading="lazy"
-        />
-        <img
-          src="https://github-readme-streak-stats.herokuapp.com?user=Tom-Mendy&theme=transparent"
-          alt="GitHub Streak"
-          class="w-full rounded-lg bg-gray-50 p-2 dark:bg-gray-800"
-          loading="lazy"
-        />
-        <img
-          src="https://github-readme-stats.vercel.app/api/top-langs/?username=Tom-Mendy&layout=donut&theme=transparent"
-          alt="Top Languages"
+          src="https://github-readme-stats.vercel.app/api/wakatime?username=Tom_Mendy&layout=compact&theme=transparent"
+          alt="Wakatime Stats"
           class="w-full rounded-lg bg-gray-50 p-2 dark:bg-gray-800"
           loading="lazy"
         />
       </div>
-      <img
-        src="https://github-readme-stats.vercel.app/api/wakatime?username=Tom_Mendy&layout=compact&theme=transparent"
-        alt="Wakatime Stats"
-        class="w-full rounded-lg bg-gray-50 p-2 dark:bg-gray-800"
-        loading="lazy"
-      />
-    </div>
+    } @placeholder {
+      <p-skeleton width="5rem" height="2rem" />
+    }
   </section>
 </div>

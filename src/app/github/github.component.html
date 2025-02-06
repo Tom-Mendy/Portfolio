@@ -6,7 +6,7 @@
   </h2>
 
   <div *ngIf="pinnedItems?.nodes?.length; else noPinnedItems">
-    @defer (hydrate on idle) {
+    @defer (hydrate on viewport) {
       <app-display-repo [products]="pinnedItems.nodes"> </app-display-repo>
     } @placeholder {
       the repo
