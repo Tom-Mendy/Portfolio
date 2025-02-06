@@ -1,202 +1,130 @@
-<div class="container mx-auto px-4 py-8">
-  <!-- Header -->
-  <h1 class="text-center text-3xl font-bold">
-    Hi
-    <img
-      src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif"
-      alt="waving hand"
-      class="inline-block w-12 h-12"
-    />, I'm Tom Mendy
-  </h1>
+<div class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+  <!-- Header Section -->
+  <header class="mb-12 text-center">
+    <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 md:text-5xl">
+      Hi
+      <img
+        src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif"
+        alt="Waving hand animation"
+        class="inline h-12 w-12 align-middle"
+        width="48"
+        height="48"
+        loading="lazy"
+      />
+      <span class="block sm:inline">I'm Tom Mendy</span>
+    </h1>
+  </header>
 
   <!-- Connect Section -->
-  <h2 class="text-center text-2xl font-semibold mt-6">
-    Connect with me
-    <img
-      src="https://raw.githubusercontent.com/ShahriarShafin/ShahriarShafin/main/Assets/handshake.gif"
-      alt="handshake"
-      class="inline-block w-24"
-    />
-  </h2>
-  <p class="text-center mt-4">
-    <a href="https://linkedin.com/in/tom-mendy" target="_blank" rel="noopener noreferrer">
+  <section class="mb-16 text-center">
+    <h2 class="mb-6 text-3xl font-semibold text-gray-800 dark:text-gray-200">
+      Connect with me
       <img
-        src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linkedin/linkedin-original.svg"
-        alt="Tom Mendy LinkedIn"
-        class="inline-block w-8 h-8"
+        src="https://raw.githubusercontent.com/ShahriarShafin/ShahriarShafin/main/Assets/handshake.gif"
+        alt="Handshake animation"
+        class="mx-2 inline h-20 w-20 md:h-24 md:w-24"
+        width="96"
+        height="96"
+        loading="lazy"
       />
-    </a>
-  </p>
+    </h2>
+    <div class="flex justify-center space-x-4">
+      <a
+        href="https://linkedin.com/in/tom-mendy"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="transition-transform duration-300 hover:scale-110"
+      >
+        <img
+          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linkedin/linkedin-original.svg"
+          alt="LinkedIn Profile"
+          class="h-10 w-10 rounded-lg bg-gray-100 p-1 dark:bg-gray-800"
+          width="40"
+          height="40"
+          loading="eager"
+        />
+      </a>
+    </div>
+  </section>
 
   <!-- Skills Section -->
-  <h2 class="text-center text-2xl font-semibold mt-10">
-    Skills
-    <img
-      src="https://media2.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif?cid=ecf05e47a0n3gi1bfqntqmob8g9aid1oyj2wr3ds3mg700bl&rid=giphy.gif"
-      alt="Skills"
-      class="inline-block w-8"
-    />
-  </h2>
+  <section class="mb-16">
+    <h2 class="mb-8 text-center text-3xl font-semibold text-gray-800 dark:text-gray-200">
+      Skills
+      <img
+        src="https://media2.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif?cid=ecf05e47a0n3gi1bfqntqmob8g9aid1oyj2wr3ds3mg700bl&rid=giphy.gif"
+        alt="Skills animation"
+        class="inline h-10 w-10"
+        width="40"
+        height="40"
+        loading="lazy"
+      />
+    </h2>
 
-  <!-- Programming Languages -->
-  <h3 class="text-xl font-medium mt-6">Programming Languages 🔧</h3>
-  <div class="flex flex-wrap gap-3 mt-2">
-    @for (item of programmingLanguage; track item.name) {
-      <a [href]="item.site">
-        <img
-          [src]="
-            'https://img.shields.io/badge/' +
-            item.name +
-            '-' +
-            item.color +
-            '?style=for-the-badge&logo=' +
-            item.icon +
-            '&logoColor=white'
-          "
-          [alt]="item.name"
-        />
-      </a>
+    <!-- Skills Categories -->
+    @for (category of skillCategories; track category.title) {
+      <div class="mb-10">
+        <h3 class="mb-4 text-xl font-medium text-center text-gray-700 dark:text-gray-300">
+          {{ category.title }}
+        </h3>
+        <div class="flex flex-wrap justify-center gap-3 md:gap-4">
+          @for (item of category.items; track item.name) {
+            <a [href]="item.site" class="transition-transform duration-200 hover:scale-105">
+              <img
+                [src]="generateBadgeUrl(item)"
+                [alt]="item.name + ' badge'"
+                class="h-8 rounded-md"
+                loading="lazy"
+                height="32"
+              />
+            </a>
+          }
+        </div>
+      </div>
     }
-  </div>
-
-  <!-- Web Development -->
-  <h3 class="text-xl font-medium mt-8">Web development 🌐</h3>
-  <div class="flex flex-wrap gap-3 mt-2">
-    @for (item of webDevelopment; track item.name) {
-      <a [href]="item.site">
-        <img
-          [src]="
-            'https://img.shields.io/badge/' +
-            item.name +
-            '-' +
-            item.color +
-            '?style=for-the-badge&logo=' +
-            item.icon +
-            '&logoColor=white'
-          "
-          [alt]="item.name"
-        />
-      </a>
-    }
-  </div>
-
-  <!-- Database -->
-  <h3 class="text-xl font-medium mt-8">Database 💽</h3>
-  <div class="flex flex-wrap gap-3 mt-2">
-    @for (item of database; track item.name) {
-      <a [href]="item.site">
-        <img
-          [src]="
-            'https://img.shields.io/badge/' +
-            item.name +
-            '-' +
-            item.color +
-            '?style=for-the-badge&logo=' +
-            item.icon +
-            '&logoColor=white'
-          "
-          [alt]="item.name"
-        />
-      </a>
-    }
-  </div>
-
-  <!-- Ops -->
-  <h3 class="text-xl font-medium mt-8">Ops ⚙️</h3>
-  <div class="flex flex-wrap gap-3 mt-2">
-    @for (item of ops; track item.name) {
-      <a [href]="item.site">
-        <img
-          [src]="
-            'https://img.shields.io/badge/' +
-            item.name +
-            '-' +
-            item.color +
-            '?style=for-the-badge&logo=' +
-            item.icon +
-            '&logoColor=white'
-          "
-          [alt]="item.name"
-        />
-      </a>
-    }
-  </div>
-
-  <!-- Container -->
-  <h3 class="text-xl font-medium mt-8">Container 🚢</h3>
-  <div class="flex flex-wrap gap-3 mt-2">
-    @for (item of container; track item.name) {
-      <a [href]="item.site">
-        <img
-          [src]="
-            'https://img.shields.io/badge/' +
-            item.name +
-            '-' +
-            item.color +
-            '?style=for-the-badge&logo=' +
-            item.icon +
-            '&logoColor=white'
-          "
-          [alt]="item.name"
-        />
-      </a>
-    }
-  </div>
-
-  <!-- Operating System -->
-  <h3 class="text-xl font-medium mt-8">Operating System 💻</h3>
-  <div class="flex flex-wrap gap-3 mt-2">
-    @for (item of operatingSystems; track item.name) {
-      <a [href]="item.site">
-        <img
-          [src]="
-            'https://img.shields.io/badge/' +
-            item.name +
-            '-' +
-            item.color +
-            '?style=for-the-badge&logo=' +
-            item.icon +
-            '&logoColor=white'
-          "
-          [alt]="item.name"
-        />
-      </a>
-    }
-  </div>
+  </section>
 
   <!-- GitHub Stats -->
-  <h2 class="flex items-center justify-center gap-3 text-center text-2xl font-semibold mt-10">
-    My GitHub Stats
-    <img
-      src="https://media1.giphy.com/media/du3J3cXyzhj75IOgvA/giphy.gif?cid=ecf05e47x2g034i9pzwtzzsd3xgg2w9nr94t4tflbbgo3008&rid=giphy.gif"
-      alt="GitHub Stats"
-      class="w-10"
-    />
-  </h2>
-  <div class="flex flex-wrap justify-center mt-6 gap-8">
-    <div class="text-center">
+  <section class="text-center">
+    <h2 class="mb-8 text-3xl font-semibold text-gray-800 dark:text-gray-200">
+      GitHub Activity
       <img
-        src="https://github-readme-stats.vercel.app/api?username=Tom-Mendy&show_icons=true&theme=transparent"
-        alt="GitHub Stats"
-        class="mx-auto"
+        src="https://media1.giphy.com/media/du3J3cXyzhj75IOgvA/giphy.gif?cid=ecf05e47x2g034i9pzwtzzsd3xgg2w9nr94t4tflbbgo3008&rid=giphy.gif"
+        alt="GitHub activity animation"
+        class="inline h-12 w-12"
+        width="48"
+        height="48"
+        loading="lazy"
       />
-      <img
-        src="https://github-readme-streak-stats.herokuapp.com?user=Tom-Mendy&theme=transparent"
-        alt="GitHub Streak Stats"
-        class="mx-auto mt-4"
-      />
-      <img
-        src="https://github-readme-stats.vercel.app/api/top-langs/?username=Tom-Mendy&layout=donut&theme=transparent"
-        alt="Top Languages"
-        class="mx-auto mt-4"
-      />
-    </div>
-    <div class="text-center">
+    </h2>
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
+      <div>
+        <img
+          src="https://github-readme-stats.vercel.app/api?username=Tom-Mendy&show_icons=true&theme=transparent"
+          alt="GitHub Stats"
+          class="w-full rounded-lg bg-gray-50 p-2 dark:bg-gray-800"
+          loading="lazy"
+        />
+        <img
+          src="https://github-readme-streak-stats.herokuapp.com?user=Tom-Mendy&theme=transparent"
+          alt="GitHub Streak"
+          class="w-full rounded-lg bg-gray-50 p-2 dark:bg-gray-800"
+          loading="lazy"
+        />
+        <img
+          src="https://github-readme-stats.vercel.app/api/top-langs/?username=Tom-Mendy&layout=donut&theme=transparent"
+          alt="Top Languages"
+          class="w-full rounded-lg bg-gray-50 p-2 dark:bg-gray-800"
+          loading="lazy"
+        />
+      </div>
       <img
         src="https://github-readme-stats.vercel.app/api/wakatime?username=Tom_Mendy&layout=compact&theme=transparent"
         alt="Wakatime Stats"
-        class="mx-auto"
+        class="w-full rounded-lg bg-gray-50 p-2 dark:bg-gray-800"
+        loading="lazy"
       />
     </div>
-  </div>
+  </section>
 </div>
