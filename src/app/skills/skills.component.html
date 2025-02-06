@@ -1,43 +1,4 @@
 <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
-  <!-- Header Section -->
-  <header class="mb-12 text-center">
-    <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 md:text-5xl">
-      Hi
-      <img
-        src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif"
-        alt="Waving hand animation"
-        class="inline h-12 w-12 align-middle"
-        width="48"
-        height="48"
-        loading="lazy"
-      />
-      <span class="block sm:inline">I'm Tom Mendy</span>
-    </h1>
-  </header>
-
-  <!-- Connect Section -->
-  <section class="mb-16 text-center">
-    <h2 class="mb-6 text-3xl font-semibold text-gray-800 dark:text-gray-200">Connect with me</h2>
-    <div class="flex justify-center space-x-4">
-      <a
-        href="https://linkedin.com/in/tom-mendy"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="transition-transform duration-300 hover:scale-110"
-      >
-        <img
-          src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linkedin/linkedin-original.svg"
-          alt="LinkedIn Profile"
-          class="h-10 w-10 rounded-lg bg-gray-100 p-1 dark:bg-gray-800"
-          width="40"
-          height="40"
-          loading="eager"
-          onload=""
-        />
-      </a>
-    </div>
-  </section>
-
   <!-- Skills Section -->
   <section class="mb-16">
     <h2 class="mb-8 text-center text-3xl font-semibold text-gray-800 dark:text-gray-200">Skills</h2>
@@ -51,7 +12,9 @@
         @defer (hydrate on viewport) {
           <div class="flex flex-wrap justify-center gap-3 md:gap-4">
             @for (item of category.items; track item.name) {
-              <p-skeleton *ngIf="!item.load" width="6rem" height="2rem" borderRadius="16px" />
+              @if (!item.load) {
+                <p-skeleton width="6rem" height="2rem" borderRadius="16px" />
+              }
               <a [href]="item.site" class="transition-transform duration-200 hover:scale-105">
                 <img
                   [ngSrc]="generateBadgeUrl(item)"

@@ -4,10 +4,11 @@ import { ContactComponent } from './contact/contact.component';
 import { DividerModule } from 'primeng/divider';
 import { GithubComponent } from './github/github.component';
 import { SkillsComponent } from './skills/skills.component';
+import { HomeComponent } from './home/home.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ContactComponent, DividerModule, GithubComponent, SkillsComponent],
+  imports: [RouterOutlet, ContactComponent, DividerModule, GithubComponent, SkillsComponent, HomeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
