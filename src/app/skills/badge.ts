@@ -3,5 +3,4 @@ export interface Badge {
   name: string;
   icon: string;
   color: string;
-  load: boolean;
 }

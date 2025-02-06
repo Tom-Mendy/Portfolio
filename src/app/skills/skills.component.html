@@ -12,9 +12,6 @@
         @defer (hydrate on viewport) {
           <div class="flex flex-wrap justify-center gap-3 md:gap-4">
             @for (item of category.items; track item.name) {
-              @if (!item.load) {
-                <p-skeleton width="6rem" height="2rem" borderRadius="16px" />
-              }
               <a [href]="item.site" class="transition-transform duration-200 hover:scale-105">
                 <img
                   [ngSrc]="generateBadgeUrl(item)"
@@ -22,7 +19,9 @@
                   class="h-8 rounded-md"
                   [width]="32 + item.name.length * 10"
                   height="28"
-                  (load)="onImageLoad(item)"
+                  loading="lazy"
+                  priority="false"
+                  placeholder='<p-skeleton width="3rem" height="2rem" borderRadius="16px" />'
                 />
               </a>
             }
