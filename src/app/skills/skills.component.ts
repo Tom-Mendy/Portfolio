@@ -18,6 +18,7 @@ const README_KEY = makeStateKey<string>('readmeContent');
 })
 export class SkillsComponent implements OnInit {
   readmeContent: SafeHtml = '';
+
   programmingLanguage: Badge[] = [
     { color: '4EAA25', name: 'bash', icon: 'gnubash', site: 'https://gnu.org/software/bash' },
     { color: 'A8B9CC', name: 'c', icon: 'c', site: 'https://en.wikipedia.org/wiki/C_(programming_language)' },
@@ -41,6 +42,20 @@ export class SkillsComponent implements OnInit {
     { color: '61DAFB', name: 'react', icon: 'react', site: 'https://react.dev' },
     { color: '000000', name: 'next.js', icon: 'next.js', site: 'https://nextjs.org' },
     { color: '6DB33F', name: 'spring', icon: 'spring', site: 'https://spring.io' },
+  ];
+
+  database: Badge[] = [
+    { color: '003545', name: 'mariadb', icon: 'mariadb', site: 'https://mariadb.org' },
+    { color: '4479A1', name: 'mysql', icon: 'mysql', site: 'https://mysql.com' },
+    { color: '47A248', name: 'mongodb', icon: 'mongodb', site: 'https://mongodb.com' },
+    { color: '003B57', name: 'sqlite', icon: 'sqlite', site: 'https://sqlite.org' },
+  ];
+
+  container: Badge[] = [
+    { color: '2496ED', name: 'docker', icon: 'docker', site: 'https://docker.com/' },
+    { color: '892CA0', name: 'podman', icon: 'podman', site: 'https://podman.io' },
+    { color: '0F1689', name: 'helm', icon: 'helm', site: 'https://helm.sh/' },
+    { color: '326CE5', name: 'kubernetes', icon: 'kubernetes', site: 'https://kubernetes.io/' },
   ];
 
   constructor(

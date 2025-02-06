@@ -83,27 +83,22 @@
   <!-- Database -->
   <h3 class="text-xl font-medium mt-8">Database 💽</h3>
   <div class="flex flex-wrap gap-3 mt-2">
-    <a href="https://mariadb.org" target="_blank" rel="noopener noreferrer">
-      <img
-        src="https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white"
-        alt="MariaDB"
-      />
-    </a>
-    <a href="https://mysql.com" target="_blank" rel="noopener noreferrer">
-      <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" />
-    </a>
-    <a href="https://mongodb.com" target="_blank" rel="noopener noreferrer">
-      <img
-        src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white"
-        alt="MongoDB"
-      />
-    </a>
-    <a href="https://sqlite.org" target="_blank" rel="noopener noreferrer">
-      <img
-        src="https://img.shields.io/badge/sqlite-003B57?style=for-the-badge&logo=sqlite&logoColor=white"
-        alt="SQLite"
-      />
-    </a>
+    @for (item of database; track item.name) {
+      <a [href]="item.site">
+        <img
+          [src]="
+            'https://img.shields.io/badge/' +
+            item.name +
+            '-' +
+            item.color +
+            '?style=for-the-badge&logo=' +
+            item.icon +
+            '&logoColor=white'
+          "
+          [alt]="item.name"
+        />
+      </a>
+    }
   </div>
 
   <!-- Ops -->
@@ -204,27 +199,22 @@
   <!-- Container -->
   <h3 class="text-xl font-medium mt-8">Container 🚢</h3>
   <div class="flex flex-wrap gap-3 mt-2">
-    <a href="https://docker.com/" target="_blank" rel="noopener noreferrer">
-      <img
-        src="https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"
-        alt="Docker"
-      />
-    </a>
-    <a href="https://podman.io" target="_blank" rel="noopener noreferrer">
-      <img
-        src="https://img.shields.io/badge/podman-892CA0?style=for-the-badge&logo=podman&logoColor=white"
-        alt="Podman"
-      />
-    </a>
-    <a href="https://helm.sh/" target="_blank" rel="noopener noreferrer">
-      <img src="https://img.shields.io/badge/helm-0F1689?style=for-the-badge&logo=helm&logoColor=white" alt="Helm" />
-    </a>
-    <a href="https://kubernetes.io/" target="_blank" rel="noopener noreferrer">
-      <img
-        src="https://img.shields.io/badge/kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white"
-        alt="Kubernetes"
-      />
-    </a>
+    @for (item of container; track item.name) {
+      <a [href]="item.site">
+        <img
+          [src]="
+            'https://img.shields.io/badge/' +
+            item.name +
+            '-' +
+            item.color +
+            '?style=for-the-badge&logo=' +
+            item.icon +
+            '&logoColor=white'
+          "
+          [alt]="item.name"
+        />
+      </a>
+    }
   </div>
 
   <!-- Operating System -->
