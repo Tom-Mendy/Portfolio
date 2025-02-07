@@ -9,7 +9,7 @@
     @defer (hydrate on viewport) {
       <app-display-repo [products]="pinnedItems.nodes"> </app-display-repo>
     } @placeholder {
-      the repo
+      <p-skeleton width="6rem" height="2rem" borderRadius="16px" />
     }
   </div>
 

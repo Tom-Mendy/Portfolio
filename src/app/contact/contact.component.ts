@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CVComponent } from '../cv/cv.component';
+import { CVComponent } from './cv/cv.component';
 
 @Component({
   selector: 'app-contact',

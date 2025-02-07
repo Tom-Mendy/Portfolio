@@ -5,10 +5,19 @@ import { DividerModule } from 'primeng/divider';
 import { GithubComponent } from './github/github.component';
 import { SkillsComponent } from './skills/skills.component';
 import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ContactComponent, DividerModule, GithubComponent, SkillsComponent, HomeComponent],
+  imports: [
+    RouterOutlet,
+    ContactComponent,
+    DividerModule,
+    GithubComponent,
+    SkillsComponent,
+    HomeComponent,
+    AboutComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
