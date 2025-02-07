@@ -6,6 +6,7 @@ import { GithubComponent } from './github/github.component';
 import { SkillsComponent } from './skills/skills.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
+import { ScrollTopModule } from 'primeng/scrolltop';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ import { AboutComponent } from './about/about.component';
     SkillsComponent,
     HomeComponent,
     AboutComponent,
+    ScrollTopModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
