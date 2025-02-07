@@ -1,7 +1,7 @@
 <div class="card flex justify-center">
-  <p-button (click)="showDialog()" label="Show my CV" />
+  <p-button (click)="showDialog()" label="Show my CV"></p-button>
   <p-dialog
-    header="Header"
+    header="My CV"
     [(visible)]="visible"
     [modal]="true"
     [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
@@ -9,8 +9,10 @@
     [draggable]="false"
     [resizable]="false"
     [maximizable]="true"
-    class="justify-center"
   >
-    <img [ngSrc]="cvUrl" [alt]="cvAlt" width="500" height="200" />
+    <!-- Flex container to center content both horizontally and vertically -->
+    <div class="flex justify-center items-center" style="height: 100%">
+      <img [ngSrc]="cvUrl" [alt]="cvAlt" width="500" height="200" />
+    </div>
   </p-dialog>
 </div>
