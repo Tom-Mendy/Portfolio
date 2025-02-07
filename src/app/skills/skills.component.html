@@ -38,41 +38,54 @@
     <h2 class="mb-8 text-3xl font-semibold text-gray-800 dark:text-gray-200">
       GitHub Activity
       <img
-        src="https://media1.giphy.com/media/du3J3cXyzhj75IOgvA/giphy.gif?cid=ecf05e47x2g034i9pzwtzzsd3xgg2w9nr94t4tflbbgo3008&rid=giphy.gif"
+        ngSrc="https://media1.giphy.com/media/du3J3cXyzhj75IOgvA/giphy.gif?cid=ecf05e47x2g034i9pzwtzzsd3xgg2w9nr94t4tflbbgo3008&rid=giphy.gif"
         alt="GitHub activity animation"
         class="inline h-12 w-12"
         width="48"
         height="48"
         loading="lazy"
+        placeholder='<p-skeleton width="3rem" height="3rem" borderRadius="16px" />'
       />
     </h2>
     @defer (hydrate on viewport) {
       <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
         <div>
           <img
-            src="https://github-readme-stats.vercel.app/api?username=Tom-Mendy&show_icons=true&theme=transparent"
+            ngSrc="https://github-readme-stats.vercel.app/api?username=Tom-Mendy&show_icons=true&theme=transparent"
             alt="GitHub Stats"
             class="w-full rounded-lg p-2 dark:bg-gray-800"
+            width="532"
+            height="231"
             loading="lazy"
+            placeholder='<p-skeleton width="6rem" height="2rem" borderRadius="16px" />'
           />
           <img
-            src="https://github-readme-streak-stats.herokuapp.com?user=Tom-Mendy&theme=transparent"
+            ngSrc="https://github-readme-streak-stats.herokuapp.com?user=Tom-Mendy&theme=transparent"
             alt="GitHub Streak"
             class="w-full rounded-lg p-2 dark:bg-gray-800"
+            width="532"
+            height="219"
             loading="lazy"
+            placeholder='<p-skeleton width="6rem" height="2rem" borderRadius="16px" />'
           />
           <img
-            src="https://github-readme-stats.vercel.app/api/top-langs/?username=Tom-Mendy&layout=donut&theme=transparent"
+            ngSrc="https://github-readme-stats.vercel.app/api/top-langs/?username=Tom-Mendy&layout=donut&theme=transparent"
             alt="Top Languages"
             class="w-full rounded-lg p-2 dark:bg-gray-800"
+            width="532"
+            height="300"
             loading="lazy"
+            placeholder='<p-skeleton width="6rem" height="2rem" borderRadius="16px" />'
           />
         </div>
         <img
-          src="https://github-readme-stats.vercel.app/api/wakatime?username=Tom_Mendy&layout=compact&theme=transparent"
+          ngSrc="https://github-readme-stats.vercel.app/api/wakatime?username=Tom_Mendy&layout=compact&theme=transparent"
           alt="Wakatime Stats"
-          class="w-full rounded-lg p-2 dark:bg-gray-800"
+          class="w-full rounded-lg p-2 dark:bg-gray-800 w-"
+          width="532"
+          height="657"
           loading="lazy"
+          placeholder='<p-skeleton width="33rem" height="41rem" borderRadius="16px" />'
         />
       </div>
     } @placeholder {
