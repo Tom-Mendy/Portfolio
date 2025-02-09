@@ -1,6 +1,7 @@
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { CVComponent } from './cv/cv.component';
 import { isPlatformBrowser } from '@angular/common';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-contact',
@@ -9,11 +10,11 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrl: './contact.component.css',
 })
 export class ContactComponent {
-  email = 'tom.mendy@epitech.eu';
+  email = environment.EMAIL;
 
-  github = 'Tom-Mendy';
+  github = environment.GITHUB_USER;
 
-  linkedin = 'tom-mendy';
+  linkedin = environment.LINKEDIN_USER;
 
   showCopiedMessage = false;
 
