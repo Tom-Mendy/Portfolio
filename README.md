@@ -2,6 +2,16 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.4.
 
+## Run Project
+
+fill `.env` like `.env.example`
+
+than run:
+
+```bash
+npm start
+```
+
 ## Development server
 
 To start a local development server, run:
