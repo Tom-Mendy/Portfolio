@@ -7,7 +7,7 @@
           [options]="options"
           [allowEmpty]="false"
           class="bg-gray-100 dark:bg-gray-800 rounded-lg p-1"
-        >
+          >
           <ng-template #item let-item>
             @if (item === 'grid') {
               <ng-icon name="matGridViewOutline" />
@@ -23,174 +23,164 @@
     <!-- List Layout -->
     <ng-template #list let-items>
       <div class="divide-y divide-gray-200 dark:divide-gray-700">
-        <div *ngFor="let item of items" class="p-6 hover: dark:hover:bg-gray-800 transition-colors duration-200">
-          <div class="flex flex-col sm:flex-row gap-6">
-            <!-- Image Section -->
-            <div class="w-full sm:w-40 flex-shrink-0 relative group">
-              <img
-                class="w-full h-40 object-cover rounded-lg border border-gray-200 dark:border-gray-700"
+        @for (item of items; track item) {
+          <div class="p-6 hover: dark:hover:bg-gray-800 transition-colors duration-200">
+            <div class="flex flex-col sm:flex-row gap-6">
+              <!-- Image Section -->
+              <div class="w-full sm:w-40 flex-shrink-0 relative group">
+                <img
+                  class="w-full h-40 object-cover rounded-lg border border-gray-200 dark:border-gray-700"
                 [ngSrc]="
                   'https://raw.githubusercontent.com/' + item.owner.login + '/' + item.name + '/main/example.png'
                 "
-                width="582"
-                height="327"
-                placeholder='<p-skeleton width="6rem" height="2rem" borderRadius="16px" />'
-                alt="Example Image"
-              />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
-              ></div>
-            </div>
-
-            <!-- Content Section -->
-            <div class="flex-1 flex flex-col justify-between">
-              <div class="space-y-3">
-                <div class="flex items-center gap-2">
-                  <app-language-icon [language]="item.primaryLanguage.name" class="w-5 h-5"></app-language-icon>
-                  <span class="text-sm font-medium text-gray-600 dark:text-gray-400">
-                    {{ item.primaryLanguage.name }}
-                  </span>
-                </div>
-
-                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">
-                  {{ item.name }}
-                </h3>
-
-                <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400">
-                  <ng-icon name="svglGithubLight" class="w-5 h-5" />
-                  <span class="font-mono text-sm">{{ item.owner.login }}/{{ item.name }}</span>
-                </div>
-
-                <p class="text-gray-700 dark:text-gray-300 line-clamp-2">
-                  {{ item.description }}
-                </p>
-
-                <div class="flex flex-wrap gap-2">
-                  @for (topic of item.repositoryTopics.nodes; track topic.topic) {
-                    <span
-                      class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm"
-                    >
-                      {{ topic.topic.name }}
-                    </span>
-                  }
-                </div>
+                  width="582"
+                  height="327"
+                  placeholder='<p-skeleton width="6rem" height="2rem" borderRadius="16px" />'
+                  alt="Example Image"
+                  />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                ></div>
               </div>
-
-              <!-- Actions & Stats -->
-              <div class="mt-4 flex flex-col sm:flex-row justify-between items-start gap-4">
-                <div class="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 px-4 py-2 rounded-full">
-                  <ng-icon name="heroStarSolid" class="w-5 h-5 text-yellow-500" />
-                  <span class="font-medium text-gray-900 dark:text-gray-100">
-                    {{ item.stargazerCount | number }} Stars
-                  </span>
+              <!-- Content Section -->
+              <div class="flex-1 flex flex-col justify-between">
+                <div class="space-y-3">
+                  <div class="flex items-center gap-2">
+                    <app-language-icon [language]="item.primaryLanguage.name" class="w-5 h-5"></app-language-icon>
+                    <span class="text-sm font-medium text-gray-600 dark:text-gray-400">
+                      {{ item.primaryLanguage.name }}
+                    </span>
+                  </div>
+                  <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">
+                    {{ item.name }}
+                  </h3>
+                  <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                    <ng-icon name="svglGithubLight" class="w-5 h-5" />
+                    <span class="font-mono text-sm">{{ item.owner.login }}/{{ item.name }}</span>
+                  </div>
+                  <p class="text-gray-700 dark:text-gray-300 line-clamp-2">
+                    {{ item.description }}
+                  </p>
+                  <div class="flex flex-wrap gap-2">
+                    @for (topic of item.repositoryTopics.nodes; track topic.topic) {
+                      <span
+                        class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm"
+                        >
+                        {{ topic.topic.name }}
+                      </span>
+                    }
+                  </div>
                 </div>
-
-                <div class="flex gap-2 w-full sm:w-auto">
-                  <button
-                    pButton
-                    icon="pi pi-shopping-cart"
-                    class="w-full sm:w-auto !bg-blue-600 hover:!bg-blue-700 !border-blue-600 !text-white"
-                  >
-                    Buy Now
-                  </button>
-                  <button
-                    pButton
-                    icon="pi pi-heart"
-                    class="!text-gray-700 dark:!text-gray-300 !border-gray-300 dark:!border-gray-600 hover:!bg-gray-100 dark:hover:!bg-gray-700"
-                  >
-                    Like
-                  </button>
+                <!-- Actions & Stats -->
+                <div class="mt-4 flex flex-col sm:flex-row justify-between items-start gap-4">
+                  <div class="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 px-4 py-2 rounded-full">
+                    <ng-icon name="heroStarSolid" class="w-5 h-5 text-yellow-500" />
+                    <span class="font-medium text-gray-900 dark:text-gray-100">
+                      {{ item.stargazerCount | number }} Stars
+                    </span>
+                  </div>
+                  <div class="flex gap-2 w-full sm:w-auto">
+                    <button
+                      pButton
+                      icon="pi pi-shopping-cart"
+                      class="w-full sm:w-auto !bg-blue-600 hover:!bg-blue-700 !border-blue-600 !text-white"
+                      >
+                      Buy Now
+                    </button>
+                    <button
+                      pButton
+                      icon="pi pi-heart"
+                      class="!text-gray-700 dark:!text-gray-300 !border-gray-300 dark:!border-gray-600 hover:!bg-gray-100 dark:hover:!bg-gray-700"
+                      >
+                      Like
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        }
       </div>
     </ng-template>
 
     <!-- Grid Layout -->
     <ng-template #grid let-items>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-        <div
-          *ngFor="let product of items"
-          class="border border-gray-200 dark:border-gray-700 rounded-xl bg-white dark:bg-gray-800 hover:shadow-lg transition-all duration-300"
-        >
-          <!-- Image Section -->
-          <div class="relative group">
-            <img
-              class="w-full h-48 object-cover rounded-t-xl border-b border-gray-200 dark:border-gray-700"
+        @for (product of items; track product) {
+          <div
+            class="border border-gray-200 dark:border-gray-700 rounded-xl bg-white dark:bg-gray-800 hover:shadow-lg transition-all duration-300"
+            >
+            <!-- Image Section -->
+            <div class="relative group">
+              <img
+                class="w-full h-48 object-cover rounded-t-xl border-b border-gray-200 dark:border-gray-700"
               [ngSrc]="
                 'https://raw.githubusercontent.com/' + product.owner.login + '/' + product.name + '/main/example.png'
               "
-              width="582"
-              height="327"
-              placeholder='<p-skeleton width="6rem" height="2rem" borderRadius="16px" />'
-              alt="Example Image"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent rounded-t-xl opacity-0 group-hover:opacity-100 transition-opacity"
-            ></div>
-          </div>
-
-          <!-- Content Section -->
-          <div class="p-4 space-y-4">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <app-language-icon [language]="product.primaryLanguage.name" class="w-5 h-5"></app-language-icon>
-                <span class="text-sm font-medium text-gray-600 dark:text-gray-400">
-                  {{ product.primaryLanguage.name }}
-                </span>
+                width="582"
+                height="327"
+                placeholder='<p-skeleton width="6rem" height="2rem" borderRadius="16px" />'
+                alt="Example Image"
+                />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent rounded-t-xl opacity-0 group-hover:opacity-100 transition-opacity"
+              ></div>
+            </div>
+            <!-- Content Section -->
+            <div class="p-4 space-y-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <app-language-icon [language]="product.primaryLanguage.name" class="w-5 h-5"></app-language-icon>
+                  <span class="text-sm font-medium text-gray-600 dark:text-gray-400">
+                    {{ product.primaryLanguage.name }}
+                  </span>
+                </div>
+                <div class="flex items-center gap-2 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full">
+                  <ng-icon name="heroStarSolid" class="w-4 h-4 text-yellow-500" />
+                  <span class="text-sm font-medium text-gray-900 dark:text-gray-100">
+                    {{ product.stargazerCount | number }}
+                  </span>
+                </div>
               </div>
-              <div class="flex items-center gap-2 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full">
-                <ng-icon name="heroStarSolid" class="w-4 h-4 text-yellow-500" />
-                <span class="text-sm font-medium text-gray-900 dark:text-gray-100">
-                  {{ product.stargazerCount | number }}
-                </span>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 truncate">
+                {{ product.name }}
+              </h3>
+              <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
+                <ng-icon name="svglGithubLight" class="w-4 h-4" />
+                <span class="font-mono truncate">{{ product.owner.login }}/{{ product.name }}</span>
               </div>
-            </div>
-
-            <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 truncate">
-              {{ product.name }}
-            </h3>
-
-            <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm">
-              <ng-icon name="svglGithubLight" class="w-4 h-4" />
-              <span class="font-mono truncate">{{ product.owner.login }}/{{ product.name }}</span>
-            </div>
-
-            <p class="text-gray-700 dark:text-gray-300 text-sm line-clamp-3">
-              {{ product.description }}
-            </p>
-
-            <div class="flex flex-wrap gap-2">
-              @for (topic of product.repositoryTopics.nodes; track topic.topic) {
-                <span
-                  class="px-2.5 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm"
-                >
-                  {{ topic.topic.name }}
-                </span>
-              }
-            </div>
-
-            <!-- Actions -->
-            <div class="flex gap-2 mt-4">
-              <button
-                pButton
-                icon="pi pi-shopping-cart"
-                class="w-full !bg-blue-600 hover:!bg-blue-700 !border-blue-600 !text-white"
-              >
-                Buy Now
-              </button>
-              <button
-                pButton
-                icon="pi pi-heart"
-                class="!text-gray-700 dark:!text-gray-300 !border-gray-300 dark:!border-gray-600 hover:!bg-gray-100 dark:hover:!bg-gray-700"
-              >
-                Like
-              </button>
+              <p class="text-gray-700 dark:text-gray-300 text-sm line-clamp-3">
+                {{ product.description }}
+              </p>
+              <div class="flex flex-wrap gap-2">
+                @for (topic of product.repositoryTopics.nodes; track topic.topic) {
+                  <span
+                    class="px-2.5 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm"
+                    >
+                    {{ topic.topic.name }}
+                  </span>
+                }
+              </div>
+              <!-- Actions -->
+              <div class="flex gap-2 mt-4">
+                <button
+                  pButton
+                  icon="pi pi-shopping-cart"
+                  class="w-full !bg-blue-600 hover:!bg-blue-700 !border-blue-600 !text-white"
+                  >
+                  Buy Now
+                </button>
+                <button
+                  pButton
+                  icon="pi pi-heart"
+                  class="!text-gray-700 dark:!text-gray-300 !border-gray-300 dark:!border-gray-600 hover:!bg-gray-100 dark:hover:!bg-gray-700"
+                  >
+                  Like
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        }
       </div>
     </ng-template>
   </p-dataview>

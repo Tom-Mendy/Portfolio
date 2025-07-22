@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { SkeletonModule } from 'primeng/skeleton';
 import { Badge } from './badge';
 
 @Component({
   selector: 'app-skills',
   standalone: true,
-  imports: [CommonModule, SkeletonModule, NgOptimizedImage],
+  imports: [SkeletonModule, NgOptimizedImage],
   templateUrl: './skills.component.html',
   styleUrls: ['./skills.component.css'],
 })

@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit, TransferState, makeStateKey } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+
 import { PinnedItems } from './pinned-items';
 import { DisplayRepoComponent } from './display-repo/display-repo.component';
 import { Skeleton } from 'primeng/skeleton';
@@ -10,7 +10,7 @@ const PINNED_REPOS_KEY = makeStateKey<PinnedItems>('pinnedRepos');
 
 @Component({
   selector: 'app-github',
-  imports: [CommonModule, DisplayRepoComponent, Skeleton],
+  imports: [DisplayRepoComponent, Skeleton],
   templateUrl: './github.component.html',
   styleUrls: ['./github.component.css'],
 })
