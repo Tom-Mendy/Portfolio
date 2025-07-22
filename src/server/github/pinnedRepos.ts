@@ -51,8 +51,8 @@ export function GithubFetchPinnedRepos(response: any, res: Response): PinnedItem
     body: JSON.stringify({ query }),
   })
     .then((response) => response.json())
-    .then((data) => {
-      pinnedItems = data.data.user.pinnedItems;
+    .then((response) => {
+      pinnedItems = response.data.user.pinnedItems;
       transferState.set(PINNED_REPOS_KEY, pinnedItems);
       res.send(pinnedItems);
     })
