@@ -9,7 +9,7 @@
   let currentRoute = "home";
 </script>
 
-<div class="dark min-h-screen bg-background text-foreground flex flex-col">
+<div class="min-h-screen bg-background text-foreground flex flex-col">
   <header class="border-b">
     <div class="container mx-auto py-6">
       <Tabs.Root bind:value={currentRoute} class="w-full">
