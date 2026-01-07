@@ -6,7 +6,16 @@
   import Ops from '$lib/Ops.svelte';
   import * as Tabs from "$lib/components/ui/tabs";
 
-  let currentRoute = "home";
+  let currentRoute = $state("home");
+
+  const routes = {
+    home: Home,
+    projects: Projects,
+    security: Security,
+    ops: Ops
+  } as const;
+
+  const CurrentPage = $derived(routes[currentRoute as keyof typeof routes]);
 </script>
 
 <div class="min-h-screen bg-background text-foreground flex flex-col">
@@ -25,16 +34,8 @@
     </div>
   </header>
 
-  <main class="flex-grow container mx-auto px-4">
-    {#if currentRoute === 'home'}
-      <Home />
-    {:else if currentRoute === 'projects'}
-      <Projects />
-    {:else if currentRoute === 'security'}
-      <Security />
-    {:else if currentRoute === 'ops'}
-      <Ops />
-    {/if}
+  <main class="flex-grow container mx-auto px-4 py-8">
+    <CurrentPage />
   </main>
 
   <footer class="border-t py-8 text-center text-muted-foreground text-sm">
