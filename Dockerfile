@@ -14,14 +14,23 @@ RUN bun run build
 # ---------- Runtime stage ----------
 FROM docker.io/library/nginx:1.29.4-alpine-slim
 
+# Create a non-root user
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
 # Remove default config
 RUN rm /etc/nginx/conf.d/default.conf
 
+# Set up PID and permissions for non-root
+RUN touch /var/run/nginx.pid && \
+    chown -R appuser:appgroup /var/run/nginx.pid /var/cache/nginx /var/log/nginx /etc/nginx/conf.d
+
 # Copy our Nginx config
-COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --chown=appuser:appgroup nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy built static files
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build --chown=appuser:appgroup /app/dist /usr/share/nginx/html
+
+USER appuser
 
 EXPOSE 80
 
