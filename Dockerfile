@@ -3,12 +3,15 @@ FROM docker.io/oven/bun:1.3.5-alpine AS build
 
 WORKDIR /app
 
-COPY package*.json ./
+# Install all dependencies (including devDependencies needed for build)
+COPY package.json bun.lock ./
 RUN bun install --production
 
-COPY . .
+COPY svelte.config.js vite.config.ts tsconfig.json mdsvex.config.js ./
+COPY static static
+COPY src src
 RUN bun run build
-# Result: /app/dist
+# Result with adapter-static: /app/build
 
 
 # ---------- Runtime stage ----------
@@ -28,7 +31,7 @@ RUN touch /var/run/nginx.pid && \
 COPY --chown=appuser:appgroup nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy built static files
-COPY --from=build --chown=appuser:appgroup /app/dist /usr/share/nginx/html
+COPY --from=build --chown=appuser:appgroup /app/build /usr/share/nginx/html
 
 USER appuser
 
