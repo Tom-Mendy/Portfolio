@@ -1,6 +1,6 @@
 <script lang="ts">
   import * as Accordion from "$lib/components/ui/accordion";
-  import { BrainCircuit } from "lucide-svelte";
+  import { BrainCircuit } from "@lucide/svelte";
 </script>
 
 <section class="max-w-3xl mx-auto py-12 space-y-12">

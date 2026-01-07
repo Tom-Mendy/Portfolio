@@ -1,6 +1,6 @@
 <script lang="ts">
   import * as Card from "$lib/components/ui/card";
-  import { Box, Lock, Zap, Activity } from "lucide-svelte";
+  import { Box, Lock, Zap, Activity } from "@lucide/svelte";
 </script>
 
 <section class="max-w-4xl mx-auto py-12 space-y-8">

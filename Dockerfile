@@ -4,7 +4,7 @@ FROM docker.io/oven/bun:1.3.5-alpine AS build
 WORKDIR /app
 
 COPY package*.json ./
-RUN bun install
+RUN bun install --production
 
 COPY . .
 RUN bun run build

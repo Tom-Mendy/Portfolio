@@ -1,6 +1,6 @@
 <script lang="ts">
   import * as Card from "$lib/components/ui/card";
-  import { Shield, Cloud, Repeat, ShieldCheck } from "lucide-svelte";
+  import { Shield, Cloud, Repeat, ShieldCheck } from "@lucide/svelte";
 </script>
 
 <section class="max-w-4xl mx-auto space-y-12 py-12">

@@ -1,7 +1,7 @@
 <script lang="ts">
   import * as Card from "$lib/components/ui/card";
   import { Badge } from "$lib/components/ui/badge";
-  import { GitBranch, ShieldAlert, Cpu, Network, Info } from "lucide-svelte";
+  import { GitBranch, ShieldAlert, Cpu, Network, Info } from "@lucide/svelte";
 
   const projects = [
     {

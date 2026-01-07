@@ -1,5 +1,4 @@
 <script lang="ts">
-  import "$lib/../app.css";
   import Home from '$lib/Home.svelte';
   import Projects from '$lib/Projects.svelte';
   import Security from '$lib/Security.svelte';
