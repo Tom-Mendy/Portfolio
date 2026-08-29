@@ -1,17 +1,9 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PortfolioPage from '../components/PortfolioPage.astro';
+import { portfolioContent } from '../data/portfolio';
+const content = portfolioContent.fr;
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title={content.meta.title} description={content.meta.description} locale="fr" alternatePath="/en/">
+  <PortfolioPage content={content} />
+</BaseLayout>

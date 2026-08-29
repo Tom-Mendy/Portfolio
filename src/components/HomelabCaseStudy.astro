@@ -1,0 +1,95 @@
+---
+import type { Locale, PortfolioContent } from '../data/portfolio';
+import SiteHeader from './SiteHeader.astro';
+import ClusterDiagram from './ClusterDiagram.astro';
+
+interface Props { locale: Locale; nav: PortfolioContent['nav'] }
+const { locale, nav } = Astro.props;
+const fr = locale === 'fr';
+const alternatePath = fr ? '/en/projects/homelab/' : '/projects/homelab/';
+const homePath = fr ? '/' : '/en/';
+
+const copy = fr ? {
+  eyebrow: 'Étude de cas · Homelab Kubernetes',
+  title: 'Un petit cluster pour apprendre les vrais problèmes d’exploitation.',
+  intro: 'Trois nœuds, un control plane, deux workers et assez de services pour rencontrer les problèmes que les tutoriels évitent souvent. Ce dépôt documente les choix, les incidents et les limites du système.',
+  repo: 'Explorer le dépôt', back: 'Retour aux projets',
+  stats: [['3', 'nœuds Kubernetes'], ['GitOps', 'avec Flux et Helm'], ['NFS', 'stockage partagé'], ['CI', 'contrôles hors cluster']],
+  architecture: 'Architecture actuelle', architectureBody: 'Flux réconcilie les manifests depuis le Forgejo du cluster. Les charts locaux décrivent les services propres au projet. Infisical injecte les secrets à l’exécution, tandis que le NAS Synology fournit le stockage persistant partagé.',
+  diagramLabel: 'Architecture du homelab avec Git, contrôles CI, Flux, un cluster Kubernetes à trois nœuds, Infisical, NFS et Grafana.',
+  decisions: 'Décisions qui ont compté',
+  cards: [
+    ['Git reprend la main', 'Les changements passent par Git et Flux. Cette règle évite qu’une modification manuelle d’image ou de manifeste entre en conflit avec l’état déclaré.'],
+    ['Le stockage quitte les workers', 'Les volumes persistants locaux dépendaient d’un seul nœud. Les charges concernées utilisent maintenant des PVC NFS sur le NAS.'],
+    ['Les secrets restent hors du dépôt', 'Infisical fournit les identifiants à l’exécution. Les contrôles CI recherchent aussi les secrets ajoutés par erreur.'],
+    ['La CI vérifie sans cluster', 'Les scripts rendent les charts, vérifient les schémas Kubernetes et appliquent une politique de stockage avant qu’un changement atteigne le cluster.'],
+  ],
+  flow: 'Chemin d’un changement', flowSteps: [['01', 'Commit', 'Une modification de chart ou de configuration entre dans Git.'], ['02', 'Vérifier', 'Gitleaks, rendu Helm, kubeconform et règles de stockage contrôlent le changement.'], ['03', 'Réconcilier', 'Flux lit la source Git et applique l’état déclaré.'], ['04', 'Observer', 'Prometheus, Grafana et Loki donnent les signaux nécessaires après le déploiement.']],
+  limits: 'Ce que le système ne prétend pas être', limitsBody: 'Ce homelab n’est pas une distribution Kubernetes prête pour la production. Le control plane reste unique, le NAS est une dépendance centrale, certains services n’ont qu’un réplica et plusieurs charges dépendent du matériel disponible. Ces risques sont acceptés et documentés, pas masqués.',
+  closeTitle: 'Le dépôt contient les manifests, les contrôles et les runbooks.', closeBody: 'L’architecture publique et les procédures de reprise permettent de discuter des choix sur des preuves concrètes.', closeLink: 'Voir le code et la documentation',
+} : {
+  eyebrow: 'Case study · Kubernetes homelab',
+  title: 'A small cluster built to expose real operational problems.',
+  intro: 'Three nodes, one control plane, two workers and enough services to meet the problems tutorials often leave out. The repository records decisions, incidents and system limits.',
+  repo: 'Explore the repository', back: 'Back to projects',
+  stats: [['3', 'Kubernetes nodes'], ['GitOps', 'with Flux and Helm'], ['NFS', 'shared storage'], ['CI', 'checks outside the cluster']],
+  architecture: 'Current architecture', architectureBody: 'Flux reconciles manifests from the in-cluster Forgejo instance. Local charts describe project-specific services. Infisical injects runtime secrets, while a Synology NAS provides shared persistent storage.',
+  diagramLabel: 'Homelab architecture with Git, CI checks, Flux, a three-node Kubernetes cluster, Infisical, NFS and Grafana.',
+  decisions: 'Decisions that mattered',
+  cards: [
+    ['Git takes ownership', 'Changes go through Git and Flux. This rule prevents a manual image or manifest update from fighting the declared state.'],
+    ['Storage leaves the workers', 'Local persistent volumes depended on one worker. The affected workloads now use NFS-backed PVCs on the NAS.'],
+    ['Secrets stay out of the repository', 'Infisical supplies credentials at runtime. CI also searches for secrets committed by mistake.'],
+    ['CI works without the cluster', 'Scripts render charts, validate Kubernetes schemas and enforce a storage policy before a change reaches the cluster.'],
+  ],
+  flow: 'Path of a change', flowSteps: [['01', 'Commit', 'A chart or configuration change enters Git.'], ['02', 'Check', 'Gitleaks, Helm rendering, kubeconform and storage rules inspect it.'], ['03', 'Reconcile', 'Flux reads the Git source and applies the declared state.'], ['04', 'Observe', 'Prometheus, Grafana and Loki provide signals after deployment.']],
+  limits: 'What the system does not claim to be', limitsBody: 'This homelab is not a production-ready Kubernetes distribution. The control plane is a single node, the NAS is a central dependency, some services have one replica and several workloads depend on the available hardware. Those risks are accepted and documented, not hidden.',
+  closeTitle: 'The repository contains the manifests, checks and runbooks.', closeBody: 'Its public architecture and recovery procedures make the engineering choices open to inspection.', closeLink: 'Read the code and documentation',
+};
+---
+
+<SiteHeader locale={locale} nav={nav} alternatePath={alternatePath} />
+<main id="content" class="case-study">
+  <section class="case-hero shell">
+    <a class="back-link" href={`${homePath}#projects`}><span aria-hidden="true">←</span>{copy.back}</a>
+    <p class="eyebrow">{copy.eyebrow}</p>
+    <h1>{copy.title}</h1>
+    <p class="case-intro">{copy.intro}</p>
+    <a class="button primary" href="https://github.com/Tom-Mendy/homelab">{copy.repo}<span aria-hidden="true">↗</span></a>
+  </section>
+
+  <section class="case-stats shell" aria-label={fr ? 'Résumé du projet' : 'Project summary'}>
+    {copy.stats.map(([value, label]) => <div><strong>{value}</strong><span>{label}</span></div>)}
+  </section>
+
+  <section class="case-section shell architecture-section">
+    <div class="case-section-copy"><p class="section-number">01 / 04</p><h2>{copy.architecture}</h2><p>{copy.architectureBody}</p></div>
+    <ClusterDiagram label={copy.diagramLabel} compact />
+  </section>
+
+  <section class="case-section section-tinted">
+    <div class="shell">
+      <div class="case-section-copy"><p class="section-number">02 / 04</p><h2>{copy.decisions}</h2></div>
+      <div class="decision-grid">
+        {copy.cards.map(([title, body], index) => <article><span>0{index + 1}</span><h3>{title}</h3><p>{body}</p></article>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section shell">
+    <div class="case-section-copy"><p class="section-number">03 / 04</p><h2>{copy.flow}</h2></div>
+    <ol class="delivery-flow">
+      {copy.flowSteps.map(([number, title, body]) => <li><span>{number}</span><div><h3>{title}</h3><p>{body}</p></div></li>)}
+    </ol>
+  </section>
+
+  <section class="case-section limits-section">
+    <div class="shell limits-inner"><p class="section-number">04 / 04</p><h2>{copy.limits}</h2><p>{copy.limitsBody}</p></div>
+  </section>
+
+  <section class="case-close shell">
+    <h2>{copy.closeTitle}</h2><p>{copy.closeBody}</p>
+    <a class="text-link" href="https://github.com/Tom-Mendy/homelab">{copy.closeLink}<span aria-hidden="true">↗</span></a>
+  </section>
+</main>
+<footer class="site-footer"><div class="shell footer-inner"><p>© {new Date().getFullYear()} Tom Mendy</p><div><a href="mailto:contact@tom-mendy.com">contact@tom-mendy.com</a><a href={homePath}>{fr ? 'Accueil' : 'Home'} ↑</a></div></div></footer>

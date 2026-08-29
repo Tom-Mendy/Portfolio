@@ -1,0 +1,49 @@
+---
+import '@fontsource-variable/manrope';
+import '@fontsource-variable/jetbrains-mono';
+import '../styles/global.css';
+import type { Locale } from '../data/portfolio';
+
+interface Props {
+  title: string;
+  description: string;
+  locale: Locale;
+  alternatePath: string;
+}
+
+const { title, description, locale, alternatePath } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const alternate = new URL(alternatePath, Astro.site);
+const frenchUrl = locale === 'fr' ? canonical : alternate;
+const englishUrl = locale === 'en' ? canonical : alternate;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f3f1e8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="fr" href={frenchUrl} />
+    <link rel="alternate" hreflang="en" href={englishUrl} />
+    <link rel="alternate" hreflang="x-default" href={frenchUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Tom Mendy" />
+    <meta property="og:locale" content={locale === 'fr' ? 'fr_FR' : 'en_GB'} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">{locale === 'fr' ? 'Aller au contenu' : 'Skip to content'}</a>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,33 @@
+---
+import type { Locale, PortfolioContent } from '../data/portfolio';
+
+interface Props {
+  locale: Locale;
+  nav: PortfolioContent['nav'];
+  alternatePath: string;
+  home?: boolean;
+}
+
+const { locale, nav, alternatePath, home = false } = Astro.props;
+const homePath = locale === 'fr' ? '/' : '/en/';
+const anchor = (id: string) => home ? `#${id}` : `${homePath}#${id}`;
+---
+
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="wordmark" href={homePath} aria-label={locale === 'fr' ? 'Accueil de Tom Mendy' : 'Tom Mendy home'}>
+      <span>TM</span>
+      <strong>Tom Mendy</strong>
+    </a>
+    <nav class="main-nav" aria-label={locale === 'fr' ? 'Navigation principale' : 'Main navigation'}>
+      <a href={anchor('projects')}>{nav.work}</a>
+      <a href={anchor('experience')}>{nav.experience}</a>
+      <a href={anchor('skills')}>{nav.skills}</a>
+      <a href={anchor('contact')}>{nav.contact}</a>
+    </nav>
+    <a class="language-link" href={alternatePath} hreflang={locale === 'fr' ? 'en' : 'fr'}>
+      {nav.language}
+      <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+</header>

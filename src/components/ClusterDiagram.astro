@@ -1,0 +1,60 @@
+---
+interface Props {
+  label: string;
+  compact?: boolean;
+}
+const { label, compact = false } = Astro.props;
+---
+
+<div class:list={['cluster-diagram', { compact }]} role="img" aria-label={label}>
+  <svg viewBox="0 0 620 430" aria-hidden="true">
+    <defs>
+      <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+        <path d="M 28 0 L 0 0 0 28" fill="none" stroke="currentColor" stroke-opacity="0.09" stroke-width="1" />
+      </pattern>
+      <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="7" stdDeviation="8" flood-opacity="0.13" />
+      </filter>
+    </defs>
+    <rect width="620" height="430" rx="22" fill="url(#grid)" />
+    <path class="flow-line" d="M104 92 H238 M328 92 H472 M532 126 V200 M450 274 H337 M283 274 H170" />
+    <path class="flow-line faint" d="M214 335 H404" />
+    <g class="diagram-node source" transform="translate(34 55)">
+      <rect width="110" height="74" rx="12" />
+      <text x="18" y="30" class="node-kicker">SOURCE</text>
+      <text x="18" y="53" class="node-title">Git</text>
+    </g>
+    <g class="diagram-node" transform="translate(238 55)">
+      <rect width="90" height="74" rx="12" />
+      <text x="16" y="30" class="node-kicker">CHECK</text>
+      <text x="16" y="53" class="node-title">CI</text>
+    </g>
+    <g class="diagram-node accent" transform="translate(472 55)">
+      <rect width="114" height="74" rx="12" />
+      <text x="17" y="30" class="node-kicker">RECONCILE</text>
+      <text x="17" y="53" class="node-title">Flux</text>
+    </g>
+    <g class="cluster-frame" transform="translate(72 200)" filter="url(#shadow)">
+      <rect width="476" height="172" rx="18" />
+      <text x="22" y="30" class="cluster-label">KUBERNETES / 3 NODES</text>
+      <g class="diagram-node small" transform="translate(22 52)">
+        <rect width="126" height="76" rx="10" />
+        <text x="15" y="30" class="node-kicker">CONTROL PLANE</text>
+        <text x="15" y="54" class="node-title">node1</text>
+      </g>
+      <g class="diagram-node small" transform="translate(174 52)">
+        <rect width="126" height="76" rx="10" />
+        <text x="15" y="30" class="node-kicker">WORKER</text>
+        <text x="15" y="54" class="node-title">node2</text>
+      </g>
+      <g class="diagram-node small" transform="translate(326 52)">
+        <rect width="126" height="76" rx="10" />
+        <text x="15" y="30" class="node-kicker">WORKER / GPU</text>
+        <text x="15" y="54" class="node-title">node3</text>
+      </g>
+    </g>
+    <g class="diagram-chip" transform="translate(117 395)"><rect width="110" height="26" rx="13"/><text x="55" y="17">Infisical</text></g>
+    <g class="diagram-chip" transform="translate(255 395)"><rect width="110" height="26" rx="13"/><text x="55" y="17">NFS</text></g>
+    <g class="diagram-chip" transform="translate(393 395)"><rect width="110" height="26" rx="13"/><text x="55" y="17">Grafana</text></g>
+  </svg>
+</div>

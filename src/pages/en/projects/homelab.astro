@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import HomelabCaseStudy from '../../../components/HomelabCaseStudy.astro';
+import { portfolioContent } from '../../../data/portfolio';
+const content = portfolioContent.en;
+---
+<BaseLayout title="Kubernetes homelab | Tom Mendy" description="A case study of Tom Mendy’s Kubernetes homelab, managed with Flux, Helm, Infisical and shared NFS storage." locale="en" alternatePath="/projects/homelab/">
+  <HomelabCaseStudy locale="en" nav={content.nav} />
+</BaseLayout>
