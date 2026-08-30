@@ -14,14 +14,22 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  REGISTRY: forgejo.tom-mendy.com
-  IMAGE_NAME: forgejo.tom-mendy.com/tom-mendy/portfolio
+  REGISTRY: harbor.home.tom-mendy.com
+  IMAGE_NAME: harbor.home.tom-mendy.com/portfolio/portfolio
   IMAGE_SHA_TAG: sha-${{ forgejo.sha }}
+  BUILDKITD_FLAGS: >-
+    --oci-worker-snapshotter=fuse-overlayfs
+    --oci-worker-no-process-sandbox
 
 jobs:
   publish:
-    runs-on: ubuntu-latest
+    runs-on: buildkit
     timeout-minutes: 30
+    container:
+      image: harbor.home.tom-mendy.com/homelab/ci/buildkit-forgejo@sha256:573c108b9221ef005ba2d62885f64b0028147ce5dbfc0b267843530ab286b26f
+      credentials:
+        username: ${{ secrets.HARBOR_REGISTRY_USER }}
+        password: ${{ secrets.HARBOR_REGISTRY_TOKEN }}
 
     steps:
       - name: Check out the repository
@@ -29,45 +37,31 @@ jobs:
         with:
           clean: true
 
-      - name: Log in to the Forgejo registry
+      - name: Configure Harbor authentication
         shell: bash
         env:
-          REGISTRY_USERNAME: ${{ forgejo.repository_owner }}
-          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+          REGISTRY_USERNAME: ${{ secrets.HARBOR_REGISTRY_USER }}
+          REGISTRY_TOKEN: ${{ secrets.HARBOR_REGISTRY_TOKEN }}
         run: |
           set -euo pipefail
+          test -n "$REGISTRY_USERNAME"
           test -n "$REGISTRY_TOKEN"
-          printf '%s' "$REGISTRY_TOKEN" | docker login "$REGISTRY" \
-            --username "$REGISTRY_USERNAME" --password-stdin
+          mkdir -p "$HOME/.docker"
+          auth="$(printf '%s:%s' "$REGISTRY_USERNAME" "$REGISTRY_TOKEN" | base64 | tr -d '\\n')"
+          printf '{"auths":{"%s":{"auth":"%s"}}}\n' "$REGISTRY" "$auth" > "$HOME/.docker/config.json"
 
-      - name: Build the image
+      - name: Build and publish image
         shell: bash
         run: |
           set -euo pipefail
-          docker build --pull \
-            --label "org.opencontainers.image.source=$FORGEJO_SERVER_URL/$FORGEJO_REPOSITORY" \
-            --label "org.opencontainers.image.revision=$FORGEJO_SHA" \
-            --tag "$IMAGE_NAME:$IMAGE_SHA_TAG" \
-            .
-
-      - name: Push the immutable commit tag
-        shell: bash
-        run: |
-          set -euo pipefail
-          for attempt in 1 2 3; do
-            docker push "$IMAGE_NAME:$IMAGE_SHA_TAG" && exit 0
-            sleep 15
-          done
-          exit 1
-
-      - name: Update the main tag
-        if: forgejo.ref == 'refs/heads/main'
-        shell: bash
-        run: |
-          set -euo pipefail
-          docker tag "$IMAGE_NAME:$IMAGE_SHA_TAG" "$IMAGE_NAME:latest"
-          for attempt in 1 2 3; do
-            docker push "$IMAGE_NAME:latest" && exit 0
-            sleep 15
-          done
-          exit 1
+          buildctl-daemonless.sh build \
+            --frontend dockerfile.v0 \
+            --progress=plain \
+            --local context=. \
+            --local dockerfile=. \
+            --opt platform=linux/amd64 \
+            --opt "label:org.opencontainers.image.source=$FORGEJO_SERVER_URL/$FORGEJO_REPOSITORY" \
+            --opt "label:org.opencontainers.image.revision=$FORGEJO_SHA" \
+            --output "type=image,\"name=$IMAGE_NAME:$IMAGE_SHA_TAG,$IMAGE_NAME:latest\",push=true" \
+            --import-cache type=registry,ref="$IMAGE_NAME:buildcache" \
+            --export-cache type=registry,ref="$IMAGE_NAME:buildcache",mode=max
