@@ -2,8 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PortfolioPage from '../components/PortfolioPage.astro';
 import { portfolioContent } from '../data/portfolio';
+import { createProfilePageStructuredData } from '../data/seo';
 const content = portfolioContent.fr;
+const structuredData = createProfilePageStructuredData('fr', content.meta.description);
 ---
-<BaseLayout title={content.meta.title} description={content.meta.description} locale="fr" alternatePath="/en/">
+<BaseLayout title={content.meta.title} description={content.meta.description} locale="fr" alternatePath="/en/" structuredData={structuredData}>
   <PortfolioPage content={content} />
 </BaseLayout>

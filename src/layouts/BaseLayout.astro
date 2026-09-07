@@ -8,14 +8,19 @@ interface Props {
   title: string;
   description: string;
   locale: Locale;
-  alternatePath: string;
+  alternatePath?: string;
+  noindex?: boolean;
+  structuredData?: Record<string, unknown>;
 }
 
-const { title, description, locale, alternatePath } = Astro.props;
+const { title, description, locale, alternatePath, noindex = false, structuredData } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const alternate = new URL(alternatePath, Astro.site);
+const alternate = alternatePath ? new URL(alternatePath, Astro.site) : undefined;
 const frenchUrl = locale === 'fr' ? canonical : alternate;
 const englishUrl = locale === 'en' ? canonical : alternate;
+const structuredDataJson = structuredData
+  ? JSON.stringify(structuredData).replace(/</g, '\\u003c')
+  : undefined;
 ---
 
 <!doctype html>
@@ -26,20 +31,34 @@ const englishUrl = locale === 'en' ? canonical : alternate;
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#f3f1e8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="fr" href={frenchUrl} />
-    <link rel="alternate" hreflang="en" href={englishUrl} />
-    <link rel="alternate" hreflang="x-default" href={frenchUrl} />
+    <link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" sizes="64x64" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    {noindex ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <>
+        <link rel="canonical" href={canonical} />
+        {alternate && frenchUrl && englishUrl && (
+          <>
+            <link rel="alternate" hreflang="fr" href={frenchUrl} />
+            <link rel="alternate" hreflang="en" href={englishUrl} />
+            <link rel="alternate" hreflang="x-default" href={frenchUrl} />
+          </>
+        )}
+      </>
+    )}
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="Tom Mendy" />
     <meta property="og:locale" content={locale === 'fr' ? 'fr_FR' : 'en_GB'} />
+    <meta property="og:locale:alternate" content={locale === 'fr' ? 'en_GB' : 'fr_FR'} />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    {structuredDataJson && <script type="application/ld+json" is:inline set:html={structuredDataJson} />}
     <title>{title}</title>
   </head>
   <body>

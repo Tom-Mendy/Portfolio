@@ -6,7 +6,7 @@ import ClusterDiagram from './ClusterDiagram.astro';
 interface Props { content: PortfolioContent }
 const { content } = Astro.props;
 const alternatePath = content.locale === 'fr' ? '/en/' : '/';
-const cvLabel = content.locale === 'fr' ? 'CV de Tom Mendy au format PDF' : 'Tom Mendy’s CV in French, PDF';
+const cvLabel = content.locale === 'fr' ? 'Télécharger mon CV, PDF en français' : 'Download my CV, French PDF';
 ---
 
 <SiteHeader locale={content.locale} nav={content.nav} alternatePath={alternatePath} home />
@@ -108,11 +108,10 @@ const cvLabel = content.locale === 'fr' ? 'CV de Tom Mendy au format PDF' : 'Tom
       ))}
     </div>
     <div class="credentials-grid">
-      <article class="credential accent-card">
+      <article class="credential accent-card" data-watermark="CKAD">
         <p>{content.profile.certificationLabel}</p>
         <h3>{content.profile.certificationTitle}</h3>
         <span>{content.profile.certificationDetail}</span>
-        <strong aria-hidden="true">CKAD</strong>
       </article>
       <article class="credential">
         <p>{content.profile.educationLabel}</p>

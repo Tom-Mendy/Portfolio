@@ -1,0 +1,16 @@
+# Tom Mendy
+
+> Portfolio bilingue de Tom Mendy, ingénieur DevOps et Platform Engineer basé à Bordeaux.
+
+## Pages principales
+
+- [Portfolio en français](https://tom-mendy.com/)
+- [Portfolio in English](https://tom-mendy.com/en/)
+- [Étude de cas du homelab Kubernetes](https://tom-mendy.com/projects/homelab/)
+- [Kubernetes homelab case study](https://tom-mendy.com/en/projects/homelab/)
+- [CV de Tom Mendy](https://tom-mendy.com/downloads/Tom-Mendy-CV-2027.pdf)
+
+## Profils publics
+
+- [GitHub](https://github.com/Tom-Mendy)
+- [LinkedIn](https://linkedin.com/in/tom-mendy)

@@ -133,7 +133,13 @@ svg { display: block; max-width: 100%; }
 .credential > p { margin: 0 0 54px; font: 600 10px var(--mono); text-transform: uppercase; letter-spacing: .08em; }
 .credential h3 { max-width: 390px; margin: 0 0 12px; font-size: 24px; line-height: 1.15; letter-spacing: -.035em; }
 .credential > span { color: var(--ink-soft); font-size: 12px; }
-.credential > strong { position: absolute; right: -12px; bottom: -32px; color: rgba(11,29,42,.1); font-size: 88px; letter-spacing: -.08em; }
+.credential[data-watermark]::after { content: attr(data-watermark); position: absolute; right: -12px; bottom: -32px; color: rgba(11,29,42,.1); font-size: 88px; font-weight: 700; letter-spacing: -.08em; pointer-events: none; }
+
+.error-page { min-height: 100vh; display: grid; place-items: center; padding-block: 64px; }
+.error-card { max-width: 760px; }
+.error-code { margin: 0 0 20px; color: var(--acid-dark); font: 700 13px var(--mono); letter-spacing: .1em; }
+.error-card h1 { margin: 0; font-size: clamp(48px, 8vw, 88px); line-height: 1; letter-spacing: -.06em; }
+.error-card > p:not(.error-code) { max-width: 600px; margin: 28px 0 36px; color: var(--ink-soft); font-size: 18px; }
 
 .contact-section { padding-block: 112px; background: var(--acid); }
 .contact-inner h2 { max-width: 850px; }

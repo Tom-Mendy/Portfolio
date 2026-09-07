@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page introuvable | Tom Mendy"
+  description="Cette page n’existe pas. This page does not exist."
+  locale="fr"
+  noindex
+>
+  <main id="content" class="error-page shell">
+    <div class="error-card">
+      <p class="error-code">Erreur 404 · Error 404</p>
+      <h1>Page introuvable.</h1>
+      <p>Cette adresse ne mène nulle part. The page you requested could not be found.</p>
+      <div class="button-row">
+        <a class="button primary" href="/">Accueil en français</a>
+        <a class="button secondary" href="/en/" hreflang="en">English home</a>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
