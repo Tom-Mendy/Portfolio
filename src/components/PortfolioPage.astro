@@ -5,7 +5,7 @@ import ClusterDiagram from './ClusterDiagram.astro';
 
 interface Props { content: PortfolioContent }
 const { content } = Astro.props;
-const alternatePath = content.locale === 'fr' ? '/en/' : '/';
+const alternatePath = content.locale === 'fr' ? '/en/' : '/fr/';
 const cvLabel = content.locale === 'fr' ? 'Télécharger mon CV, PDF en français' : 'Download my CV, French PDF';
 ---
 

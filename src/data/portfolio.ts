@@ -89,7 +89,7 @@ export const portfolioContent: Record<Locale, PortfolioContent> = {
           description: 'Un cluster de trois nœuds piloté par Flux et Helm. J’y gère l’ingress, les secrets, PostgreSQL, le stockage NFS, l’observabilité et les procédures de reprise.',
           tags: ['Kubernetes', 'Flux', 'Helm', 'Infisical', 'CloudNativePG'],
           repository: 'https://github.com/Tom-Mendy/homelab',
-          caseStudy: '/projects/homelab/',
+          caseStudy: '/fr/projects/homelab/',
         },
         {
           name: 'Whanos',

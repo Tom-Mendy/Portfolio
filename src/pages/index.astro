@@ -1,11 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PortfolioPage from '../components/PortfolioPage.astro';
-import { portfolioContent } from '../data/portfolio';
-import { createProfilePageStructuredData } from '../data/seo';
-const content = portfolioContent.fr;
-const structuredData = createProfilePageStructuredData('fr', content.meta.description);
 ---
-<BaseLayout title={content.meta.title} description={content.meta.description} locale="fr" alternatePath="/en/" structuredData={structuredData}>
-  <PortfolioPage content={content} />
+
+<BaseLayout
+  title="Choisir une langue | Tom Mendy"
+  description="Choisissez la langue du portfolio de Tom Mendy. Choose the language for Tom Mendy's portfolio."
+  locale="fr"
+  noindex
+>
+  <main id="content" class="error-page shell">
+    <div class="error-card">
+      <p class="error-code">Langue · Language</p>
+      <h1>Choisir une langue.</h1>
+      <p>Select the language you want to use.</p>
+      <div class="button-row">
+        <a class="button primary" href="/fr/" hreflang="fr">Français</a>
+        <a class="button secondary" href="/en/" hreflang="en">English</a>
+      </div>
+    </div>
+  </main>
 </BaseLayout>

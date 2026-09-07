@@ -1,7 +1,7 @@
 import type { Locale } from './portfolio';
 
 export function createProfilePageStructuredData(locale: Locale, description: string) {
-  const pageUrl = locale === 'fr' ? 'https://tom-mendy.com/' : 'https://tom-mendy.com/en/';
+  const pageUrl = locale === 'fr' ? 'https://tom-mendy.com/fr/' : 'https://tom-mendy.com/en/';
 
   return {
     '@context': 'https://schema.org',
@@ -9,10 +9,10 @@ export function createProfilePageStructuredData(locale: Locale, description: str
     url: pageUrl,
     inLanguage: locale,
     mainEntity: {
-      '@id': 'https://tom-mendy.com/#tom-mendy',
+      '@id': 'https://tom-mendy.com/fr/#tom-mendy',
       '@type': 'Person',
       name: 'Tom Mendy',
-      url: 'https://tom-mendy.com/',
+      url: 'https://tom-mendy.com/fr/',
       jobTitle: locale === 'fr' ? 'Ingénieur DevOps et Platform Engineer' : 'DevOps and Platform Engineer',
       description,
       sameAs: [

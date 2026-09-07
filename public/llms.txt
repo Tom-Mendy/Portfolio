@@ -4,9 +4,9 @@
 
 ## Pages principales
 
-- [Portfolio en français](https://tom-mendy.com/)
+- [Portfolio en français](https://tom-mendy.com/fr/)
 - [Portfolio in English](https://tom-mendy.com/en/)
-- [Étude de cas du homelab Kubernetes](https://tom-mendy.com/projects/homelab/)
+- [Étude de cas du homelab Kubernetes](https://tom-mendy.com/fr/projects/homelab/)
 - [Kubernetes homelab case study](https://tom-mendy.com/en/projects/homelab/)
 - [CV de Tom Mendy](https://tom-mendy.com/downloads/Tom-Mendy-CV-2027.pdf)
 

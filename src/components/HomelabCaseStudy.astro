@@ -6,8 +6,8 @@ import ClusterDiagram from './ClusterDiagram.astro';
 interface Props { locale: Locale; nav: PortfolioContent['nav'] }
 const { locale, nav } = Astro.props;
 const fr = locale === 'fr';
-const alternatePath = fr ? '/en/projects/homelab/' : '/projects/homelab/';
-const homePath = fr ? '/' : '/en/';
+const alternatePath = fr ? '/en/projects/homelab/' : '/fr/projects/homelab/';
+const homePath = fr ? '/fr/' : '/en/';
 
 const copy = fr ? {
   eyebrow: 'Étude de cas · Homelab Kubernetes',

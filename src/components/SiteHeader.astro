@@ -9,7 +9,7 @@ interface Props {
 }
 
 const { locale, nav, alternatePath, home = false } = Astro.props;
-const homePath = locale === 'fr' ? '/' : '/en/';
+const homePath = locale === 'fr' ? '/fr/' : '/en/';
 const anchor = (id: string) => home ? `#${id}` : `${homePath}#${id}`;
 ---
 

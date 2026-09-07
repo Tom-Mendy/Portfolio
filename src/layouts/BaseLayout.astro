@@ -9,15 +9,17 @@ interface Props {
   description: string;
   locale: Locale;
   alternatePath?: string;
+  xDefaultPath?: string;
   noindex?: boolean;
   structuredData?: Record<string, unknown>;
 }
 
-const { title, description, locale, alternatePath, noindex = false, structuredData } = Astro.props;
+const { title, description, locale, alternatePath, xDefaultPath, noindex = false, structuredData } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const alternate = alternatePath ? new URL(alternatePath, Astro.site) : undefined;
 const frenchUrl = locale === 'fr' ? canonical : alternate;
 const englishUrl = locale === 'en' ? canonical : alternate;
+const xDefaultUrl = xDefaultPath ? new URL(xDefaultPath, Astro.site) : frenchUrl;
 const structuredDataJson = structuredData
   ? JSON.stringify(structuredData).replace(/</g, '\\u003c')
   : undefined;
@@ -43,7 +45,7 @@ const structuredDataJson = structuredData
           <>
             <link rel="alternate" hreflang="fr" href={frenchUrl} />
             <link rel="alternate" hreflang="en" href={englishUrl} />
-            <link rel="alternate" hreflang="x-default" href={frenchUrl} />
+            <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
           </>
         )}
       </>
