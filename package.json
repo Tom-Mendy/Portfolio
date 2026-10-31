@@ -11,14 +11,13 @@
     "dev:logs": "astro dev logs",
     "dev:stop": "astro dev stop",
     "build": "astro build",
+    "build:timings": "astro build --timings",
     "check": "astro check",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
-    "@fontsource-variable/jetbrains-mono": "^5.3.0",
-    "@fontsource-variable/manrope": "^5.3.0",
     "astro": "^7.4.4"
   },
   "allowScripts": {

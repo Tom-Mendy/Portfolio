@@ -7,8 +7,8 @@
   --acid: #b9ff66;
   --acid-dark: #70a837;
   --white: #fffef8;
-  --sans: 'Manrope Variable', 'Helvetica Neue', sans-serif;
-  --mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+  --sans: var(--font-manrope);
+  --mono: var(--font-jetbrains-mono);
   --shell: min(1180px, calc(100vw - 48px));
 }
 
