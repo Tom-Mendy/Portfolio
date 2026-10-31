@@ -13,7 +13,7 @@ COPY src src
 RUN bun run check && bun run build
 
 # Serve the generated site without a root process.
-FROM docker.io/library/nginx:1.29.4-alpine-slim AS runtime
+FROM docker.io/library/nginx:1.31.8-alpine-slim AS runtime
 
 RUN mkdir -p /var/cache/nginx /var/log/nginx /etc/nginx/conf.d /tmp/client_temp \
     && chown -R nginx:nginx /var/cache/nginx /var/log/nginx /etc/nginx /tmp/client_temp

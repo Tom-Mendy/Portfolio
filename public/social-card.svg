@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f3f1e8"/>
+  <path d="M0 0h16v630H0z" fill="#b9ff66"/>
+  <g font-family="DejaVu Sans, sans-serif" fill="#0b1d2a">
+    <rect x="72" y="62" width="64" height="64" rx="14"/>
+    <path d="M85 80h38v8h-14v25H99V88H85z" fill="#b9ff66"/>
+    <path d="M115 93h8v20h-8z" fill="#f3f1e8"/>
+    <text x="156" y="103" font-size="22" letter-spacing="2">TOM-MENDY.COM</text>
+    <text x="68" y="265" font-size="90" font-weight="bold" letter-spacing="-5">Tom Mendy</text>
+    <text x="72" y="335" font-size="34">DevOps &amp; Platform Engineering</text>
+    <path d="M72 386h640" stroke="#0b1d2a" stroke-opacity=".2"/>
+    <text x="72" y="435" font-size="22" fill="#3e4d56">Kubernetes · GitOps · Infrastructure as Code</text>
+    <text x="72" y="556" font-size="18" letter-spacing="2">CODE. DEPLOY. OPERATE.</text>
+  </g>
+  <g fill="#0b1d2a" stroke="#0b1d2a" stroke-width="2">
+    <path d="M995 240v65m0 0h-80v65m80-65h80v65" fill="none"/>
+    <rect x="945" y="155" width="100" height="85" rx="14"/>
+    <rect x="865" y="370" width="100" height="85" rx="14" fill="#b9ff66"/>
+    <rect x="1025" y="370" width="100" height="85" rx="14" fill="#b9ff66"/>
+  </g>
+  <g font-family="DejaVu Sans Mono, monospace" font-size="19" text-anchor="middle">
+    <text x="995" y="205" fill="#b9ff66">Git</text>
+    <text x="915" y="420" fill="#0b1d2a">Flux</text>
+    <text x="1075" y="420" fill="#0b1d2a">K8s</text>
+  </g>
+</svg>
